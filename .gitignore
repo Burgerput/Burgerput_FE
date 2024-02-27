@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# github actions
-.github/*
-
 # env
 .env
 
