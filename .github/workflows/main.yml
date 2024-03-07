@@ -22,6 +22,8 @@ jobs:
       - name: .env setting
         run: |
           echo "VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}" >> .env
+        env:
+          VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
       - name: install pnpm
         run: |
           npm install -g pnpm
