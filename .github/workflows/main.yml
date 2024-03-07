@@ -20,8 +20,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: .env setting
-        run: |
-          echo "VITE_SERVER_URL=${{ secrets.VITE_SERVER_URL }}" >> .env
         env:
           VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
       - name: install pnpm
