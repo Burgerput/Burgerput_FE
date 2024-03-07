@@ -9,7 +9,7 @@ import { useDisplay } from "./hooks/useOutletDisplay";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false, // window focus 설정
+      refetchOnWindowFocus: false,
     },
   },
 });
