@@ -19,13 +19,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: .env setting
-        env:
-          VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
       - name: install pnpm
         run: |
           npm install -g pnpm
       - name: build react
+        env:
+          VITE_SERVER_URL: ${{ secrets.VITE_SERVER_URL }}
         run: |
           pnpm install
           pnpm run build
