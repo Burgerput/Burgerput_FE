@@ -5,6 +5,8 @@ import TypeIt from "typeit-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useDisplay } from "./hooks/useOutletDisplay";
+import { useDateCheck } from "./hooks/useDateCheck";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,12 +25,11 @@ function App() {
     hiddenCount,
   } = useDisplay();
 
-  // 날짜 검사 후 로딩하는 로직을 서버에서 크론탭을 이용해 매일 오전 8시에 수행하기 때문에 더 이상 실행하지 않음
-  // const { checkDate, reLoad, setResult, result, loading } = useDateCheck();
+  const { checkDate, reLoad, setResult, result, loading } = useDateCheck();
 
-  // useEffect(() => {
-  //   checkDate();
-  // }, []);
+  useEffect(() => {
+    checkDate();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -47,7 +48,7 @@ function App() {
             options={{ loop: true, speed: 350, loopDelay: 8000 }}
             getBeforeInit={(instance) => {
               instance
-                .type("<Strong>BUGERKING</Strong>")
+                .type("<Strong>BURGERKING</Strong>")
                 .pause(2000)
                 .delete(4)
                 .pause(1000)
