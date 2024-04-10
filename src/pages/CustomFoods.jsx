@@ -11,8 +11,7 @@ export default function CustomFoods() {
 
   const {
     productsQuery: { isLoading, error, data: foods },
-    setProducts,
-    handleSubmit,
+    handleSubmitProducts,
     success,
   } = useFoods();
 
@@ -27,7 +26,7 @@ export default function CustomFoods() {
             <form
               id='customFoods'
               className={styles.form}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmitProducts}
             >
               {success && <Banner text={"식품 선택이 완료되었습니다."} />}
               <div className={styles.products}>
@@ -36,7 +35,6 @@ export default function CustomFoods() {
                     <div key={food.id}>
                       <CustomProducts
                         value={food}
-                        setProducts={setProducts}
                         checkedIt={food.isChecked === "true" ? true : false}
                       />
                     </div>

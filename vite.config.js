@@ -10,5 +10,12 @@ export default defineConfig({
       usePolling: true,
     },
     port: 3000,
+    proxy: {
+      "/back": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });

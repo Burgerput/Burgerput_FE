@@ -11,8 +11,7 @@ export default function InputMachines() {
 
   const {
     productsQuery: { isLoading, error, data: machines },
-    handleSubmit,
-    setProducts,
+    handleSubmitProducts,
     success,
   } = useMachines();
 
@@ -27,7 +26,7 @@ export default function InputMachines() {
             <form
               id='customMachine'
               className={styles.form}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmitProducts}
             >
               {success && <Banner text={"기기 선택이 완료되었습니다."} />}
               <div className={styles.products}>
@@ -36,7 +35,6 @@ export default function InputMachines() {
                     <div key={machine.id}>
                       <CustomProducts
                         value={machine}
-                        setProducts={setProducts}
                         checkedIt={machine.isChecked === "true" ? true : false}
                       />
                     </div>

@@ -1,25 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CustomProducts.module.css";
-import { customProductsHook } from "../hooks/useCustomProducts";
+import { useCustomProductsActions } from "../store/products";
 
-export default function CustomProducts({
-  value: { name, min, max, id },
-  setProducts,
-  checkedIt,
-}) {
-  const { checked, handleChange } = customProductsHook({
-    setProducts,
-    id,
-    min,
-    max,
-    checkedIt,
-  });
+export default function CustomProducts({ value, checkedIt }) {
+  const { name, min, max, id } = value;
+  const [checked, setChecked] = useState(checkedIt);
+  const { addProduct, deleteProduct } = useCustomProductsActions();
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
 
   useEffect(() => {
     if (checked) {
-      setProducts((prev) => [...prev, { id, min, max, checked }]);
+      addProduct({ id, min, max, checked });
+    } else {
+      deleteProduct(id);
     }
-  }, []);
+  }, [checked]);
 
   return (
     <div className={styles.product}>

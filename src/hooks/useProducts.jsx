@@ -74,7 +74,7 @@ export function useCustomMachines() {
 }
 
 export function useCustomFoods() {
-  const praoductsQuery = useQuery(["customFoods"], getCustomFoods, {
+  const productsQuery = useQuery(["customFoods"], getCustomFoods, {
     staleTime: Infinity,
     cacheTime: Infinity,
   });

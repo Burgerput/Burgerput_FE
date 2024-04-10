@@ -6,10 +6,11 @@ import {
   setCustomFoods,
   setCustomMachines,
 } from "../api/Products";
+import { useCustomProducts } from "../store/products";
 
 function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
   const queryClient = useQueryClient();
-  const [products, setProducts] = useState([]);
+  const products = useCustomProducts();
   const [success, setSuccess] = useState();
 
   const productsQuery = useQuery([queryKey], getItemFunc, {
@@ -41,7 +42,7 @@ function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
     );
   };
 
-  return { productsQuery, handleSubmitProducts, success, setProducts };
+  return { productsQuery, handleSubmitProducts, success };
 }
 
 export function useMachines() {
