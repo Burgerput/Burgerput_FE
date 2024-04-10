@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./CustomMachines.module.css";
-import { useFoods } from "./../hooks/useProducts";
 import CustomProducts from "./../components/CustomProducts";
 import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
+import { useFoods } from "../hooks/products";
 
 export default function CustomFoods() {
   const { handleClick } = useGoHome();

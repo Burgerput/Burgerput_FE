@@ -9,7 +9,7 @@ export async function getDiffInven() {
 }
 
 // 기기 목록을 받아오는 api
-export async function getMachines() {
+export async function getAllMachines() {
   return await client
     .get("/back/select/machines")
     .then((res) => res.data)
@@ -17,7 +17,7 @@ export async function getMachines() {
 }
 
 // 식품 목록을 받아오는 api
-export async function getFoods() {
+export async function getAllFoods() {
   return await client
     .get("/back/select/foods")
     .then((res) => res.data)
