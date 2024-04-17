@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./CustomProducts.module.css";
 import { useCustomProductsActions } from "../store/products";
 
-export default function CustomProducts({ value, checkedIt }) {
+export default function CustomProduct({ value, checkedIt }) {
   const { name, min, max, id } = value;
   const [checked, setChecked] = useState(checkedIt);
   const { addProduct, deleteProduct } = useCustomProductsActions();

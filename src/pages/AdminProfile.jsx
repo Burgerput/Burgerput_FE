@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import styles from "./Admins.module.css";
+import React from "react";
+import styles from "./AdminProfile.module.css";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import Banner from "./../components/Banner";
-import { useAccounts } from "./../hooks/useManagers";
+import Banner from "../components/Banner";
+import { useAccounts } from "../hooks/useManagers";
 import Button from "../components/Button";
 
-export default function Admins() {
+export default function AdminProfile() {
   const {
     register,
     handleSubmit,

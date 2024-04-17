@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./CustomMachines.module.css";
-import CustomProducts from "./../components/CustomProducts";
+import styles from "./CustomPage.module.css";
+import CustomProduct from "../components/CustomProduct";
 import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
@@ -33,7 +33,7 @@ export default function CustomFoods() {
                 {foods &&
                   foods.map((food) => (
                     <div key={food.id}>
-                      <CustomProducts
+                      <CustomProduct
                         value={food}
                         checkedIt={food.isChecked === "true" ? true : false}
                       />

@@ -1,12 +1,12 @@
 import React from "react";
-import CustomProducts from "./../components/CustomProducts";
-import styles from "./CustomMachines.module.css";
+import CustomProduct from "../components/CustomProduct";
+import styles from "./CustomPage.module.css";
 import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useMachines } from "../hooks/products";
 
-export default function InputMachines() {
+export default function CustomMachines() {
   const { handleClick } = useGoHome();
 
   const {
@@ -33,7 +33,7 @@ export default function InputMachines() {
                 {machines &&
                   machines.map((machine) => (
                     <div key={machine.id}>
-                      <CustomProducts
+                      <CustomProduct
                         value={machine}
                         checkedIt={machine.isChecked === "true" ? true : false}
                       />

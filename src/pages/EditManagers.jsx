@@ -1,11 +1,11 @@
-import styles from "./SelectManagers.module.css";
+import styles from "./EditManagers.module.css";
 import { PiTrashBold } from "react-icons/pi";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { AiOutlineEnter } from "react-icons/ai";
-import { useManagers } from "./../hooks/useManagers";
+import { useManagers } from "../hooks/useManagers";
 import { useGoHome } from "../hooks/useNavigator";
 
-export default function SelectManagers() {
+export default function EditManagers() {
   const { handleClick } = useGoHome();
 
   const {
