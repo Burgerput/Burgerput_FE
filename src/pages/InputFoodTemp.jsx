@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useCustomFoods, useCustomProducts } from "../hooks/useProducts";
 import Banner from "../components/Banner";
 import InputProducts from "../components/InputProducts";
 import ManagerList from "../components/ManagerList";
@@ -8,11 +7,17 @@ import Button from "../components/Button";
 import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
+import { useCustomFoods, useCustomProducts } from "../hooks/customProducts";
+import { useLoading, useResult, useWarning } from "../store/uiState";
 
 export default function InputFoodTemp() {
   const location = useLocation();
 
   const { handleClick } = useGoHome();
+
+  const warning = useWarning();
+  const loading = useLoading();
+  const result = useResult();
 
   const {
     productsQuery: { isLoading, error, data },
@@ -21,12 +26,8 @@ export default function InputFoodTemp() {
 
   const {
     handleSubmit,
-    warning,
     products,
-    result,
-    loading,
     setProducts,
-    setResult,
     selectManager,
     setSelectManager,
   } = useCustomProducts({ location, setProductsTemp });
@@ -71,7 +72,6 @@ export default function InputFoodTemp() {
             {result.result === "true" && (
               <Modal
                 title={"제출"}
-                setResult={setResult}
                 component={"값을 정상적으로 제출했습니다."}
               />
             )}
@@ -80,7 +80,6 @@ export default function InputFoodTemp() {
                 title={"에러 발생"}
                 error={true}
                 submit={handleSubmit}
-                setResult={setResult}
                 component={"입력에 실패했습니다. 다시 시도해주세요."}
               />
             )}

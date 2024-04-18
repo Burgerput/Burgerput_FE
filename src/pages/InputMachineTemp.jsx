@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useCustomMachines, useCustomProducts } from "../hooks/useProducts";
 import InputProducts from "../components/InputProducts";
 import Banner from "../components/Banner";
 import ManagerList from "../components/ManagerList";
@@ -8,11 +7,17 @@ import Button from "../components/Button";
 import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
+import { useCustomMachines, useCustomProducts } from "../hooks/customProducts";
+import { useLoading, useResult, useWarning } from "../store/uiState";
 
 export default function InputMachineTemp() {
   const location = useLocation();
 
   const { handleClick } = useGoHome();
+
+  const warning = useWarning();
+  const loading = useLoading();
+  const result = useResult();
 
   const {
     productsQuery: { isLoading, error, data },
@@ -21,14 +26,10 @@ export default function InputMachineTemp() {
 
   const {
     handleSubmit,
-    warning,
     products,
-    result,
-    loading,
     setProducts,
     selectManager,
     setSelectManager,
-    setResult,
   } = useCustomProducts({ location, setProductsTemp });
 
   useEffect(() => {
@@ -46,7 +47,6 @@ export default function InputMachineTemp() {
               <ManagerList
                 className={styles.mgrList}
                 mgrList={data.mgrList}
-                x
                 selectManager={selectManager}
                 setSelectManager={setSelectManager}
               />
@@ -74,7 +74,6 @@ export default function InputMachineTemp() {
             {result.result === "true" && (
               <Modal
                 title={"제출"}
-                setResult={setResult}
                 component={"값을 정상적으로 제출했습니다."}
               />
             )}
@@ -83,7 +82,6 @@ export default function InputMachineTemp() {
                 title={"에러 발생"}
                 error={true}
                 submit={handleSubmit}
-                setResult={setResult}
                 component={"입력에 실패했습니다. 다시 시도해주세요."}
               />
             )}

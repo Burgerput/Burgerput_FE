@@ -5,14 +5,15 @@ import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useMachines } from "../hooks/products";
+import { useSuccess } from "../store/uiState";
 
 export default function CustomMachines() {
   const { handleClick } = useGoHome();
+  const success = useSuccess();
 
   const {
     productsQuery: { isLoading, error, data: machines },
     handleSubmitProducts,
-    success,
   } = useMachines();
 
   return (

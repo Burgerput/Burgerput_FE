@@ -1,5 +1,4 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import {
   getAllFoods,
   getAllMachines,
@@ -7,11 +6,12 @@ import {
   setCustomMachines,
 } from "../api/Products";
 import { useCustomProducts } from "../store/products";
+import { useHandleSuccess } from "../store/uiState";
 
 function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
   const queryClient = useQueryClient();
   const products = useCustomProducts();
-  const [success, setSuccess] = useState();
+  const handleSuccess = useHandleSuccess();
 
   const productsQuery = useQuery([queryKey], getItemFunc, {
     staleTime: Infinity,
@@ -23,23 +23,14 @@ function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
     {
       onSuccess: () => {
         invalidateKeys.forEach((key) => queryClient.invalidateQueries([key]));
+        handleSuccess();
       },
     }
   );
 
   const handleSubmitProducts = (e) => {
     e.preventDefault();
-    addCustomProducts.mutate(
-      { products },
-      {
-        onSuccess: () => {
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(null);
-          }, 3000);
-        },
-      }
-    );
+    addCustomProducts.mutate({ products });
   };
 
   return { productsQuery, handleSubmitProducts, success };

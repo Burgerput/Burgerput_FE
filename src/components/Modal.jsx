@@ -3,8 +3,8 @@ import styles from "./Modal.module.css";
 import Confirm from "./Confirm";
 import { useModal } from "../hooks/useModal";
 
-export default function Modal({ title, component, setResult, error, submit }) {
-  const { close, confirm } = useModal({ setResult });
+export default function Modal({ title, component, error, submit }) {
+  const { close, confirm } = useModal();
 
   return (
     <section className={styles.section}>

@@ -5,14 +5,15 @@ import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useFoods } from "../hooks/products";
+import { useSuccess } from "../store/uiState";
 
 export default function CustomFoods() {
   const { handleClick } = useGoHome();
+  const success = useSuccess();
 
   const {
     productsQuery: { isLoading, error, data: foods },
     handleSubmitProducts,
-    success,
   } = useFoods();
 
   return (
