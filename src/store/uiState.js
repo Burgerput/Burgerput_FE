@@ -23,6 +23,14 @@ const useSubmitStateStore = create((set) => ({
 
     setLoading: (loading) => set({ loading }),
     setResult: (result) => set({ result }),
+
+    resetState: () =>
+      set({
+        loading: false,
+        warning: false,
+        success: false,
+        result: false,
+      }),
   },
 }));
 
@@ -32,9 +40,7 @@ export const useHandleWaring = () =>
 
 export const useSuccess = () => useSubmitStateStore((state) => state.success);
 export const useHandleSuccess = () =>
-  useSubmitStateStore((state) =>
-    useSubmitStateStore(state.actions.handleSuccess)
-  );
+  useSubmitStateStore((state) => state.actions.handleSuccess);
 
 export const useLoading = () => useSubmitStateStore((state) => state.loading);
 export const useSetLoading = () =>
@@ -43,3 +49,6 @@ export const useSetLoading = () =>
 export const useResult = () => useSubmitStateStore((state) => state.result);
 export const useSetResult = () =>
   useSubmitStateStore((state) => state.actions.setResult);
+
+export const useResetState = () =>
+  useSubmitStateStore((state) => state.actions.resetState);

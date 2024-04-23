@@ -23,17 +23,23 @@ function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
     {
       onSuccess: () => {
         invalidateKeys.forEach((key) => queryClient.invalidateQueries([key]));
-        handleSuccess();
       },
     }
   );
 
   const handleSubmitProducts = (e) => {
     e.preventDefault();
-    addCustomProducts.mutate({ products });
+    addCustomProducts.mutate(
+      { products },
+      {
+        onSuccess: () => {
+          handleSuccess();
+        },
+      }
+    );
   };
 
-  return { productsQuery, handleSubmitProducts, success };
+  return { productsQuery, handleSubmitProducts };
 }
 
 export function useMachines() {
