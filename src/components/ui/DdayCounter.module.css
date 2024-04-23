@@ -1,0 +1,32 @@
+.counter {
+  position: absolute;
+  top: 10px;
+  right: -13px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 14px;
+  border: 1px solid var(--navbar-background-color);
+  border-radius: 8px;
+  color: var(--navbar-background-color);
+  transform: translateX(-25px);
+}
+
+.counter p {
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.expiryDate {
+  margin-top: 3px;
+  font-size: 14px;
+  color: gray;
+}
+
+.daysLeft {
+  font-size: 33px;
+}
