@@ -4,16 +4,16 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main from "./pages/Main";
-import Admins from "./pages/Admins";
+import AdminProfile from "./pages/AdminProfile";
 import CustomMachines from "./pages/CustomMachines";
 import CustomFoods from "./pages/CustomFoods";
-import SelectManagers from "./pages/SelectManagers";
-import InputMachines from "./pages/InputMachines";
-import InputFoods from "./pages/InputFoods";
+import EditManagers from "./pages/EditManagers";
+import InputMachineTemp from "./pages/InputMachineTemp";
+import InputFoodTemp from "./pages/InputFoodTemp";
 import NotFound from "./pages/NotFound";
-import Help from "./pages/Help";
-import CustomMachineTemp from "./pages/CustomMachineTemp";
-import CustomFoodTemp from "./pages/CustomFoodTemp";
+import CheatModeGuide from "./pages/CheatModeGuide";
+import RandomMachineTemp from "./pages/RandomMachineTemp";
+import RandomFoodTemp from "./pages/RandomFoodTemp";
 
 const router = createBrowserRouter([
   {
@@ -22,15 +22,15 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "/", element: <Main /> },
-      { path: "address", element: <Admins /> },
+      { path: "address", element: <AdminProfile /> },
       { path: "select/machines", element: <CustomMachines /> },
       { path: "select/foods", element: <CustomFoods /> },
-      { path: "select/managers", element: <SelectManagers /> },
-      { path: "zenput/machines", element: <InputMachines /> },
-      { path: "zenput/foods", element: <InputFoods /> },
-      { path: "cheat/help", element: <Help /> },
-      { path: "cheat/machine", element: <CustomMachineTemp /> },
-      { path: "cheat/food", element: <CustomFoodTemp /> },
+      { path: "select/managers", element: <EditManagers /> },
+      { path: "zenput/machines", element: <InputMachineTemp /> },
+      { path: "zenput/foods", element: <InputFoodTemp /> },
+      { path: "cheat/help", element: <CheatModeGuide /> },
+      { path: "cheat/machine", element: <RandomMachineTemp /> },
+      { path: "cheat/food", element: <RandomFoodTemp /> },
     ],
   },
   {

@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Help.module.css";
+import styles from "./CheatModeGuide.module.css";
 
-export default function Help() {
+export default function CheatModeGuide() {
   return (
     <section className={styles.help}>
       <header className={styles.title}>Cheat Mode</header>

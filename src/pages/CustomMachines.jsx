@@ -1,19 +1,19 @@
 import React from "react";
-import CustomProducts from "./../components/CustomProducts";
-import styles from "./CustomMachines.module.css";
-import { useMachines } from "./../hooks/useProducts";
+import CustomProduct from "../components/CustomProduct";
+import styles from "./CustomPage.module.css";
 import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
+import { useMachines } from "../hooks/products";
+import { useSuccess } from "../store/uiState";
 
-export default function InputMachines() {
+export default function CustomMachines() {
   const { handleClick } = useGoHome();
+  const success = useSuccess();
 
   const {
     productsQuery: { isLoading, error, data: machines },
-    handleSubmit,
-    setProducts,
-    success,
+    handleSubmitProducts,
   } = useMachines();
 
   return (
@@ -27,16 +27,15 @@ export default function InputMachines() {
             <form
               id='customMachine'
               className={styles.form}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmitProducts}
             >
               {success && <Banner text={"기기 선택이 완료되었습니다."} />}
               <div className={styles.products}>
                 {machines &&
                   machines.map((machine) => (
                     <div key={machine.id}>
-                      <CustomProducts
+                      <CustomProduct
                         value={machine}
-                        setProducts={setProducts}
                         checkedIt={machine.isChecked === "true" ? true : false}
                       />
                     </div>

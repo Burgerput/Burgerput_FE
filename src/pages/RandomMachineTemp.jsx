@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import styles from "./CustomMachineTemp.module.css";
+import styles from "./RandomTemp.module.css";
 import SetTemp from "../components/SetTemp";
-import { useCheatFoods, useCheatProducts } from "../hooks/useCheat";
+import { useCheatMachines, useCheatProducts } from "../hooks/useCheat";
 import ManagerList from "../components/ManagerList";
 import Banner from "../components/Banner";
 import Modal from "../components/Modal";
 
-export default function CustomFoodTemp() {
-  const { submitCustomTemp, data, setCustomTemp } = useCheatFoods();
+export default function RandomMachineTemp() {
+  const { submitCustomTemp, data, setCustomTemp } = useCheatMachines();
   const {
     handleSave,
     handleSubmit,
@@ -25,13 +25,13 @@ export default function CustomFoodTemp() {
   });
 
   useEffect(() => {
-    setProducts(data?.customCheatFood);
+    setProducts(data?.customCheatMachine);
   }, [data]);
 
   return (
     <section className={styles.section}>
       <div className={styles.title}>
-        <div className={styles.text}>식품 범위</div>
+        <div className={styles.text}>기기 범위</div>
         {data?.mgrList && (
           <ManagerList
             className={styles.mgrList}
@@ -98,7 +98,7 @@ export default function CustomFoodTemp() {
           }}
           disabled={success || warning}
         >
-          오전 식품 제출
+          오전 기기 제출
         </button>
         <button
           className={styles.submitBtn}
@@ -108,7 +108,7 @@ export default function CustomFoodTemp() {
           }}
           disabled={success || warning}
         >
-          오후 식품 제출
+          오후 기기 제출
         </button>
       </section>
     </section>

@@ -1,19 +1,19 @@
 import React from "react";
-import styles from "./CustomMachines.module.css";
-import { useFoods } from "./../hooks/useProducts";
-import CustomProducts from "./../components/CustomProducts";
+import styles from "./CustomPage.module.css";
+import CustomProduct from "../components/CustomProduct";
 import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
+import { useFoods } from "../hooks/products";
+import { useSuccess } from "../store/uiState";
 
 export default function CustomFoods() {
   const { handleClick } = useGoHome();
+  const success = useSuccess();
 
   const {
     productsQuery: { isLoading, error, data: foods },
-    setProducts,
-    handleSubmit,
-    success,
+    handleSubmitProducts,
   } = useFoods();
 
   return (
@@ -27,16 +27,15 @@ export default function CustomFoods() {
             <form
               id='customFoods'
               className={styles.form}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmitProducts}
             >
               {success && <Banner text={"식품 선택이 완료되었습니다."} />}
               <div className={styles.products}>
                 {foods &&
                   foods.map((food) => (
                     <div key={food.id}>
-                      <CustomProducts
+                      <CustomProduct
                         value={food}
-                        setProducts={setProducts}
                         checkedIt={food.isChecked === "true" ? true : false}
                       />
                     </div>

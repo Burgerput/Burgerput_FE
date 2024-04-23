@@ -1,58 +1,56 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useCustomMachines, useCustomProducts } from "./../hooks/useProducts";
-import InputProducts from "./../components/InputProducts";
-import Banner from "./../components/Banner";
-import ManagerList from "./../components/ManagerList";
+import Banner from "../components/Banner";
+import InputProducts from "../components/InputProducts";
+import ManagerList from "../components/ManagerList";
 import Button from "../components/Button";
-import styles from "./InputMachines.module.css";
+import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
+import { useCustomFoods, useCustomProducts } from "../hooks/customProducts";
+import { useLoading, useResult, useWarning } from "../store/uiState";
 
-export default function InputMachines() {
+export default function InputFoodTemp() {
   const location = useLocation();
 
   const { handleClick } = useGoHome();
 
+  const warning = useWarning();
+  const loading = useLoading();
+  const result = useResult();
+
   const {
     productsQuery: { isLoading, error, data },
     setProductsTemp,
-  } = useCustomMachines();
+  } = useCustomFoods();
 
   const {
     handleSubmit,
-    warning,
     products,
-    result,
-    loading,
     setProducts,
     selectManager,
     setSelectManager,
-    setResult,
   } = useCustomProducts({ location, setProductsTemp });
 
   useEffect(() => {
-    setProducts(data?.customMachine);
+    setProducts(data?.customFood);
   }, [data]);
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
       {products && (
         <section className={styles.section}>
           <div className={styles.title}>
-            <div className={styles.text}>기기 입력</div>
+            <div className={styles.text}>식품 입력</div>
             {data?.mgrList && (
               <ManagerList
                 className={styles.mgrList}
                 mgrList={data.mgrList}
-                x
                 selectManager={selectManager}
                 setSelectManager={setSelectManager}
               />
             )}
           </div>
-
           <form
             className={styles.form}
             id='inputMachine'
@@ -74,7 +72,6 @@ export default function InputMachines() {
             {result.result === "true" && (
               <Modal
                 title={"제출"}
-                setResult={setResult}
                 component={"값을 정상적으로 제출했습니다."}
               />
             )}
@@ -83,32 +80,26 @@ export default function InputMachines() {
                 title={"에러 발생"}
                 error={true}
                 submit={handleSubmit}
-                setResult={setResult}
                 component={"입력에 실패했습니다. 다시 시도해주세요."}
               />
             )}
-            <div>
-              {products.length === 0 ? (
-                <div className={styles.empty}>
-                  먼저 기기 선택을 완료해주세요.
+            {products.length === 0 ? (
+              <div className={styles.empty}>먼저 식품 선택을 완료해주세요.</div>
+            ) : (
+              products.map((product) => (
+                <div
+                  className={styles.product}
+                  key={product.id}
+                  onSubmit={handleSubmit}
+                >
+                  <InputProducts product={product} />
                 </div>
-              ) : (
-                products.map((product) => (
-                  <div
-                    className={styles.product}
-                    key={product.id}
-                    onSubmit={handleSubmit}
-                  >
-                    <InputProducts product={product} />
-                  </div>
-                ))
-              )}
-            </div>
+              ))
+            )}
           </form>
           <div className={styles.buttons}>
             <Button
               text={"저장"}
-              type={"submit"}
               form={"inputMachine"}
               disabled={products.length === 0 ? true : false}
             />
