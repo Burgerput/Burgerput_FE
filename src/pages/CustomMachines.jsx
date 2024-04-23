@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomProduct from "../components/CustomProduct";
 import styles from "./CustomPage.module.css";
 import Banner from "./../components/Banner";
@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useMachines } from "../hooks/products";
 import { useSuccess } from "../store/uiState";
+import { useResetCustomProducts } from "../store/products";
 
 export default function CustomMachines() {
   const { handleClick } = useGoHome();
@@ -15,6 +16,14 @@ export default function CustomMachines() {
     productsQuery: { isLoading, error, data: machines },
     handleSubmitProducts,
   } = useMachines();
+
+  const resetProducts = useResetCustomProducts();
+
+  useEffect(() => {
+    return () => {
+      resetProducts();
+    };
+  }, []);
 
   return (
     <>

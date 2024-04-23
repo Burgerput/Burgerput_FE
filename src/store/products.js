@@ -9,6 +9,7 @@ const useCustomProductsStore = create((set) => ({
       set((state) => ({
         products: state.products.filter((product) => product.id !== id),
       })),
+    resetProducts: () => set({ products: [] }),
   },
 }));
 
@@ -17,3 +18,6 @@ export const useCustomProducts = () =>
 
 export const useCustomProductsActions = () =>
   useCustomProductsStore((state) => state.actions);
+
+export const useResetCustomProducts = () =>
+  useCustomProductsStore((state) => state.actions.resetProducts);

@@ -7,14 +7,14 @@ const useSubmitStateStore = create((set) => ({
   result: false,
 
   actions: {
-    handleWarning: (duration = 1500) => {
+    handleWarning: (duration = 1000) => {
       set({ warning: true });
       setTimeout(() => {
         set({ warning: false });
       }, duration);
     },
 
-    handleSuccess: (duration = 3000) => {
+    handleSuccess: (duration = 1500) => {
       set({ success: true });
       setTimeout(() => {
         set({ success: false });

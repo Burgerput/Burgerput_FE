@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./CustomPage.module.css";
 import CustomProduct from "../components/CustomProduct";
 import Banner from "./../components/Banner";
@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useFoods } from "../hooks/products";
 import { useSuccess } from "../store/uiState";
+import { useResetCustomProducts } from "../store/products";
 
 export default function CustomFoods() {
   const { handleClick } = useGoHome();
@@ -15,6 +16,14 @@ export default function CustomFoods() {
     productsQuery: { isLoading, error, data: foods },
     handleSubmitProducts,
   } = useFoods();
+
+  const resetProducts = useResetCustomProducts();
+
+  useEffect(() => {
+    return () => {
+      resetProducts();
+    };
+  }, []);
 
   return (
     <>
