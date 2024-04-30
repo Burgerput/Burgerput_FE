@@ -12,9 +12,7 @@ export default function RandomFoodTemp() {
     handleSave,
     handleSubmit,
     setProducts,
-    setSelectManager,
     setResult,
-    selectManager,
     products,
     status: { success, loading, warning },
     result,
@@ -33,12 +31,7 @@ export default function RandomFoodTemp() {
       <div className={styles.title}>
         <div className={styles.text}>식품 범위</div>
         {data?.mgrList && (
-          <ManagerList
-            className={styles.mgrList}
-            mgrList={data.mgrList}
-            selectManager={selectManager}
-            setSelectManager={setSelectManager}
-          />
+          <ManagerList className={styles.mgrList} mgrList={data.mgrList} />
         )}
       </div>
       <form className={styles.form}>
@@ -52,8 +45,8 @@ export default function RandomFoodTemp() {
             type={"loading"}
             text={
               <img
-                src='/spinner/spinner.gif'
-                width='60%'
+                src="/spinner/spinner.gif"
+                width="60%"
                 style={{ paddingTop: "2px" }}
               />
             }

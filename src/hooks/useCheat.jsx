@@ -9,10 +9,11 @@ import {
 } from "../api/Products";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRandomTemp } from "./useRandomTemp";
+import { useManagerState } from "../store/manager";
 
 export function useCheatProducts({ setCustomTemp, submitCustomTemp }) {
   const [products, setProducts] = useState("");
-  const [selectManager, setSelectManager] = useState("");
+  const manager = useManagerState();
   const [result, setResult] = useState(false);
   const [status, setStatus] = useState({
     warning: null,
@@ -60,34 +61,31 @@ export function useCheatProducts({ setCustomTemp, submitCustomTemp }) {
     e && e.preventDefault();
 
     const newProducts = generateRandomTemp(products);
-    const manager = selectManager?.label;
     const time = setTime?.current;
 
     if (!manager) {
       handleWarning("manager");
       return;
-    } else {
-      setStatus((prev) => ({ ...prev, loading: true }));
-      submitCustomTemp({
-        manager,
-        newProducts,
-        time,
-      })
-        .then((res) => {
-          setResult(res.data);
-        })
-        .finally(() => setStatus((prev) => ({ ...prev, loading: false })))
-        .catch(console.error);
     }
+
+    setStatus((prev) => ({ ...prev, loading: true }));
+    submitCustomTemp({
+      manager,
+      newProducts,
+      time,
+    })
+      .then((res) => {
+        setResult(res.data);
+      })
+      .finally(() => setStatus((prev) => ({ ...prev, loading: false })))
+      .catch(console.error);
   };
 
   return {
     handleSave,
     handleSubmit,
     setProducts,
-    setSelectManager,
     setResult,
-    selectManager,
     products,
     status,
     result,
@@ -113,7 +111,7 @@ export function useCheatMachines() {
 
   const submitCustomTemp = ({ manager, newProducts, time }) =>
     submitMachines({
-      mgrname: manager,
+      mgrname: manager?.label,
       customMachine: newProducts,
       time: time,
     });
