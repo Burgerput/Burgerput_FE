@@ -1,9 +1,4 @@
-export function useManagerList({ mgrList, setSelectManager }) {
-  const options = mgrList.map(({ id, mgrname }) => ({
-    value: id,
-    label: mgrname,
-  }));
-
+export default function useCustomStyles() {
   const customStyles = {
     option: (defaultStyles, state) => ({
       ...defaultStyles,
@@ -30,13 +25,5 @@ export function useManagerList({ mgrList, setSelectManager }) {
     singleValue: (defaultStyles) => ({ ...defaultStyles, color: "#d1d1d1" }),
   };
 
-  const handleChange = (e) => {
-    if (e.value === "직접입력") {
-      setSelectManager(null);
-    } else {
-      setSelectManager(e);
-    }
-  };
-
-  return { options, customStyles, handleChange };
+  return { customStyles };
 }

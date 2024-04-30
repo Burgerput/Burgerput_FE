@@ -24,13 +24,10 @@ export default function InputFoodTemp() {
     setProductsTemp,
   } = useCustomFoods();
 
-  const {
-    handleSubmit,
-    products,
-    setProducts,
-    selectManager,
-    setSelectManager,
-  } = useCustomProducts({ location, setProductsTemp });
+  const { handleSubmit, products, setProducts } = useCustomProducts({
+    location,
+    setProductsTemp,
+  });
 
   useEffect(() => {
     setProducts(data?.customFood);
@@ -43,17 +40,12 @@ export default function InputFoodTemp() {
           <div className={styles.title}>
             <div className={styles.text}>식품 입력</div>
             {data?.mgrList && (
-              <ManagerList
-                className={styles.mgrList}
-                mgrList={data.mgrList}
-                selectManager={selectManager}
-                setSelectManager={setSelectManager}
-              />
+              <ManagerList className={styles.mgrList} mgrList={data.mgrList} />
             )}
           </div>
           <form
             className={styles.form}
-            id='inputMachine'
+            id="inputMachine"
             onSubmit={handleSubmit}
           >
             {warning && <Banner text={"비어있는 항목이 존재합니다."} />}
@@ -62,8 +54,8 @@ export default function InputFoodTemp() {
                 type={"loading"}
                 text={
                   <img
-                    src='/spinner/spinner.gif'
-                    width='60%'
+                    src="/spinner/spinner.gif"
+                    width="60%"
                     style={{ paddingTop: "2px" }}
                   />
                 }

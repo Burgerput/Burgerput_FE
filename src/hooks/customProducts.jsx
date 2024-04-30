@@ -7,6 +7,7 @@ import {
 } from "../api/Products";
 import { useState } from "react";
 import { useHandleWaring, useSetLoading, useSetResult } from "../store/uiState";
+import { useManagerState } from "../store/manager";
 
 function dataMutation(queryKey, getProductFunc, submitFunc, productKey) {
   const productsQuery = useQuery([queryKey], getProductFunc, {
@@ -14,9 +15,9 @@ function dataMutation(queryKey, getProductFunc, submitFunc, productKey) {
     cacheTime: Infinity,
   });
 
-  const setProductsTemp = ({ selectManager, products, location }) =>
+  const setProductsTemp = ({ manager, products, location }) =>
     submitFunc({
-      mgrname: selectManager?.label,
+      mgrname: manager?.label,
       [productKey]: products,
       time: location?.state,
     });
@@ -38,9 +39,9 @@ export function useCustomFoods() {
 }
 
 export function useCustomProducts({ location, setProductsTemp }) {
-  const [selectManager, setSelectManager] = useState("");
   const [products, setProducts] = useState([]);
   const handleWarning = useHandleWaring();
+  const manager = useManagerState();
   const setLoading = useSetLoading();
   const setResult = useSetResult();
 
@@ -48,28 +49,26 @@ export function useCustomProducts({ location, setProductsTemp }) {
     e && e.preventDefault();
     const hasEmptyTemp = products.some((product) => !product.temp);
 
-    if (hasEmptyTemp || selectManager.length === 0) {
+    if (hasEmptyTemp || manager === null) {
       handleWarning();
       return;
-    } else {
-      setLoading(true);
-
-      setProductsTemp({
-        selectManager,
-        products,
-        location,
-      })
-        .then((res) => {
-          setResult(res.data);
-        })
-        .finally(() => setLoading(false))
-        .catch((error) => console.log(error));
     }
+
+    setLoading(true);
+
+    setProductsTemp({
+      manager,
+      products,
+      location,
+    })
+      .then((res) => {
+        setResult(res.data);
+      })
+      .finally(() => setLoading(false))
+      .catch(console.error);
   };
 
   return {
-    selectManager,
-    setSelectManager,
     handleSubmit,
     products,
     setProducts,

@@ -24,13 +24,10 @@ export default function InputMachineTemp() {
     setProductsTemp,
   } = useCustomMachines();
 
-  const {
-    handleSubmit,
-    products,
-    setProducts,
-    selectManager,
-    setSelectManager,
-  } = useCustomProducts({ location, setProductsTemp });
+  const { handleSubmit, products, setProducts } = useCustomProducts({
+    location,
+    setProductsTemp,
+  });
 
   useEffect(() => {
     setProducts(data?.customMachine);
@@ -44,18 +41,13 @@ export default function InputMachineTemp() {
           <div className={styles.title}>
             <div className={styles.text}>기기 입력</div>
             {data?.mgrList && (
-              <ManagerList
-                className={styles.mgrList}
-                mgrList={data.mgrList}
-                selectManager={selectManager}
-                setSelectManager={setSelectManager}
-              />
+              <ManagerList className={styles.mgrList} mgrList={data.mgrList} />
             )}
           </div>
 
           <form
             className={styles.form}
-            id='inputMachine'
+            id="inputMachine"
             onSubmit={handleSubmit}
           >
             {warning && <Banner text={"비어있는 항목이 존재합니다."} />}
@@ -64,8 +56,8 @@ export default function InputMachineTemp() {
                 type={"loading"}
                 text={
                   <img
-                    src='/spinner/spinner.gif'
-                    width='60%'
+                    src="/spinner/spinner.gif"
+                    width="60%"
                     style={{ paddingTop: "2px" }}
                   />
                 }
