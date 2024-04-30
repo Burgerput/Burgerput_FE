@@ -18,7 +18,6 @@ const queriesToInvalidate = [
 
 export function useManagers() {
   const queryClient = useQueryClient();
-  const [manager, setManager] = useState("");
   const managersQuery = useQuery(["managers"], () => getManagerList(), {
     staleTime: Infinity,
     cacheTime: Infinity,
@@ -33,32 +32,18 @@ export function useManagers() {
   const addMgr = useMutation(
     ({ manager }) => addManager([{ mgrname: manager }]),
     {
-      onSuccess: () => invalidateManagerQueries,
+      onSuccess: invalidateManagerQueries,
     }
   );
 
   const delMgr = useMutation(
     ({ id, manager }) => deleteManger([{ id, mgrname: manager }]),
     {
-      onSuccess: () => invalidateManagerQueries,
+      onSuccess: invalidateManagerQueries,
     }
   );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addMgr.mutate({ manager });
-    setManager("");
-  };
-
-  const handleChange = (e) => {
-    setManager(e.target.value);
-  };
-
-  const handleDelete = (id, mgrname) => {
-    delMgr.mutate({ id, mgrname });
-  };
-
-  return { managersQuery, manager, handleChange, handleSubmit, handleDelete };
+  return { managersQuery, addMgr, delMgr };
 }
 
 export function useAccounts() {
