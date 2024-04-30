@@ -8,6 +8,14 @@ import {
   submitAccounts,
 } from "../api/Managers";
 
+const queriesToInvalidate = [
+  "managers",
+  "customMachines",
+  "customMachinesTemp",
+  "customFoods",
+  "customFoodsTemp",
+];
+
 export function useManagers() {
   const queryClient = useQueryClient();
   const [manager, setManager] = useState("");
@@ -16,25 +24,23 @@ export function useManagers() {
     cacheTime: Infinity,
   });
 
+  const invalidateManagerQueries = () => {
+    queriesToInvalidate.forEach((query) =>
+      queryClient.invalidateQueries([query])
+    );
+  };
+
   const addMgr = useMutation(
     ({ manager }) => addManager([{ mgrname: manager }]),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["managers"]);
-        queryClient.invalidateQueries(["customMachines"]);
-        queryClient.invalidateQueries(["customFoods"]);
-      },
+      onSuccess: () => invalidateManagerQueries,
     }
   );
 
   const delMgr = useMutation(
     ({ id, manager }) => deleteManger([{ id, mgrname: manager }]),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["managers"]);
-        queryClient.invalidateQueries(["customMachines"]);
-        queryClient.invalidateQueries(["customFoods"]);
-      },
+      onSuccess: () => invalidateManagerQueries,
     }
   );
 
