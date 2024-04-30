@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AdminProfile.module.css";
 import { useForm } from "react-hook-form";
-import { useNavigate, useOutletContext } from "react-router-dom";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Banner from "../components/Banner";
-import { useAccounts } from "../hooks/useManagers";
 import Button from "../components/Button";
+import { useGoHome } from "../hooks/useNavigator";
+import { useHandleSuccess, useSuccess } from "../store/uiState";
+import { useAdminProfile } from "../hooks/Admins";
 
 export default function AdminProfile() {
+  const [hide, setHide] = useState(true);
   const {
     register,
     handleSubmit,
@@ -17,18 +19,11 @@ export default function AdminProfile() {
   const {
     accountsQuery: { isLoading, error, data: accounts },
     submit,
-    hide,
-    setHide,
-    success,
-    setSuccess,
-  } = useAccounts();
+  } = useAdminProfile();
 
-  const { handleHidden } = useOutletContext();
-  const navigate = useNavigate();
-  const handleClick = () => {
-    handleHidden();
-    navigate("/");
-  };
+  const { handleClick } = useGoHome();
+  const success = useSuccess();
+  const handleSuccess = useHandleSuccess();
 
   return (
     <section className={styles.section}>
@@ -36,36 +31,31 @@ export default function AdminProfile() {
         <div className={styles.title}>관리자 정보 입력</div>
       </div>
       <form
-        id='inputForm'
+        id="inputForm"
         className={styles.form}
         onSubmit={handleSubmit(async (data) => {
           await new Promise((r) => setTimeout(r, 1000));
           submit.mutate(
             { data },
             {
-              onSuccess: () => {
-                setSuccess(true);
-                setTimeout(() => {
-                  setSuccess(null);
-                }, 4000);
-              },
+              onSuccess: handleSuccess,
             }
           );
         })}
       >
         <div className={styles.inputBox}>
           {success && <Banner text={"계정 저장이 완료되었습니다."} />}
-          <label className={styles.label} htmlFor='email'>
+          <label className={styles.label} htmlFor="email">
             젠풋 이메일
           </label>
           <div className={styles.wrapper}>
             <input
               className={styles.input}
               defaultValue={accounts ? accounts.zenputId : null}
-              id='email'
-              type='email'
-              placeholder='example@email.com'
-              autoComplete='off'
+              id="email"
+              type="email"
+              placeholder="example@email.com"
+              autoComplete="off"
               aria-invalid={
                 isSubmitted ? (errors.email ? true : false) : undefined
               }
@@ -78,7 +68,7 @@ export default function AdminProfile() {
               })}
             />
             {errors.email && (
-              <small className={styles.error} role='alert'>
+              <small className={styles.error} role="alert">
                 {errors.email.message}
               </small>
             )}
@@ -86,23 +76,23 @@ export default function AdminProfile() {
         </div>
 
         <div className={styles.inputBox}>
-          <label className={styles.label} htmlFor='id'>
+          <label className={styles.label} htmlFor="id">
             rbi 아이디
           </label>
           <div className={styles.wrapper}>
             <input
               className={styles.input}
               defaultValue={accounts ? accounts.rbiId : null}
-              id='id'
-              type='id'
-              placeholder='your ID'
-              autoComplete='off'
+              id="id"
+              type="id"
+              placeholder="your ID"
+              autoComplete="off"
               {...register("id", {
                 required: "아이디는 필수 입력 사항입니다.",
               })}
             />
             {errors.id && (
-              <small className={styles.error} role='alert'>
+              <small className={styles.error} role="alert">
                 {errors.id.message}
               </small>
             )}
@@ -110,17 +100,17 @@ export default function AdminProfile() {
         </div>
 
         <div className={styles.inputBox}>
-          <label className={styles.label} htmlFor='password'>
+          <label className={styles.label} htmlFor="password">
             rbi 비밀번호
           </label>
           <div className={styles.wrapper}>
             <input
               className={styles.input}
               defaultValue={accounts ? accounts.rbiPw : null}
-              id='password'
+              id="password"
               type={hide ? `password` : "text"}
-              placeholder='********'
-              autoComplete='off'
+              placeholder="********"
+              autoComplete="off"
               {...register("password", {
                 required: "비밀번호는 필수 입력 사항입니다.",
                 minLength: {
@@ -131,7 +121,7 @@ export default function AdminProfile() {
             />
             {hide ? (
               <button
-                type='button'
+                type="button"
                 className={styles.toggleButton}
                 onClick={(e) => setHide(false)}
               >
@@ -139,7 +129,7 @@ export default function AdminProfile() {
               </button>
             ) : (
               <button
-                type='button'
+                type="button"
                 className={styles.toggleButton}
                 onClick={() => setHide(true)}
               >
@@ -148,7 +138,7 @@ export default function AdminProfile() {
             )}
           </div>
           {errors.password && (
-            <small className={styles.error} role='alert'>
+            <small className={styles.error} role="alert">
               {errors.password.message}
             </small>
           )}
