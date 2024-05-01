@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import { useDisplay } from "./hooks/useOutletDisplay";
 import { useDateCheck } from "./hooks/useDateCheck";
 import { useEffect } from "react";
-import DdayCounter from "./components/ui/DdayCounter";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +33,6 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <DdayCounter expiryDate='2024-12-31' />
       <section className={styles.wrapper}>
         <Navbar
           setHidden={handleHidden}
@@ -103,8 +101,8 @@ function App() {
             <img
               className={styles.image}
               onClick={handleCount}
-              src='/logo/burgerlogo2.png'
-              alt='burger'
+              src="/logo/burgerlogo2.png"
+              alt="burger"
             />
           </div>
         </div>
