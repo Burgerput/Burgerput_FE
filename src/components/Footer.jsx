@@ -6,7 +6,7 @@ import DdayCounter from "./ui/DdayCounter";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <article>
+      <article className={styles.tools}>
         <DdayCounter expiryDate="2024-12-31" />
         <HowToUse />
       </article>

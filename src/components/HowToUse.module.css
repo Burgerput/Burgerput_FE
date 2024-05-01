@@ -1,5 +1,33 @@
+@keyframes fade-in {
+  from {
+    transform: translateY(15%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .tipBox {
+  width: 100%;
+  margin-top: 15px;
   color: var(--navbar-background-color);
-  font-family: "Pretendard";
-  margin-top: 100px;
+  padding: 10px;
+  border: 1px solid var(--navbar-background-color);
+  border-radius: 8px;
+  min-height: 80px;
+}
+
+.tipBox__title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.tipBox__description {
+  line-height: 1.5;
+  font-size: 14px;
+  animation: fade-in 400ms ease-in;
 }

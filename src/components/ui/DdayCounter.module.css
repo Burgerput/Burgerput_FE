@@ -1,6 +1,11 @@
-.counter p {
-  margin-left: 0;
-  margin-bottom: 0;
+.counter {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--navbar-background-color);
+  border-radius: 8px;
+  padding: 10px;
+  color: var(--navbar-background-color);
 }
 
 .title {
@@ -14,5 +19,5 @@
 }
 
 .daysLeft {
-  font-size: 33px;
+  font-size: 28px;
 }
