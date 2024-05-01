@@ -39,7 +39,7 @@ function App() {
           setVisible={handleVisible}
           cheat={hiddenCount >= 3 ? true : false}
         />
-        <div
+        <article
           className={
             isOutletHidden ? `${styles.typeit}` : `${styles.typeit_hidden}`
           }
@@ -57,31 +57,23 @@ function App() {
               return instance;
             }}
           />
-          <div className={styles.burger_image}>
-            <img
-              className={styles.image}
-              onClick={handleCount}
-              src="/logo/burgerlogo2.png"
-              alt="burger"
-            />
-          </div>
-        </div>
-        <div
+          <img
+            className={styles.image}
+            onClick={handleCount}
+            src="/logo/burgerlogo2.png"
+            alt="burger"
+          />
+        </article>
+        <main
           className={
             isOutletHidden ? `${styles.outlet_hidden}` : `${styles.outlet}`
           }
         >
-          <div className={styles.phone}>
-            <div className={styles.screen}>
-              <div className={styles.body}>
-                <Outlet context={{ handleHidden }} />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.footer}>
-          <Footer />
-        </div>
+          <section className={styles.body}>
+            <Outlet context={{ handleHidden }} />
+          </section>
+        </main>
+        <Footer />
       </section>
     </QueryClientProvider>
   );
