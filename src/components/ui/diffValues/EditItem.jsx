@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "./diffValues.module.css";
 
 function ChangedValueComponent({ type, list }) {
   const [prev, cur] = list;
   const titles = {
-    min: "최소 온도가 변경 되었어요.",
-    max: "최대 온도가 변경 되었어요.",
-    name: "이름이 변경 되었어요.",
+    min: "최소 온도가 변경되었어요.",
+    max: "최대 온도가 변경되었어요.",
+    name: "이름이 변경되었어요.",
   };
 
   return (
@@ -21,8 +20,8 @@ export default function EditItem({ item }) {
   const { name, diff } = item;
 
   return (
-    <article className={styles.Add}>
-      <h2>{name}가 변경 됐어요!</h2>
+    <article>
+      <h2>{name}가 변경됐어요!</h2>
       <ul>
         {diff.map((list, index) => {
           const keys = Object.keys(list);

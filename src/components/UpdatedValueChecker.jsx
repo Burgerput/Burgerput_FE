@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getDiffValue } from "../api/Products";
 import styles from "./UpdatedValueChecker.module.css";
-import AddItem from "./ui/diffValues/AddItem";
-import DeleteItem from "./ui/diffValues/DeleteItem";
 import EditItem from "./ui/diffValues/EditItem";
-
-function DefaultComponent() {
-  return <li>Unknown type error</li>;
-}
+import AddedOrRemovedItem from "./ui/diffValues/AddedOrRemovedItem";
 
 export default function UpdatedValueChecker() {
   const [diffValue, setDiffValue] = useState();
@@ -16,19 +11,16 @@ export default function UpdatedValueChecker() {
     getDiffValue().then((data) => setDiffValue(data));
   }, []);
 
-  const ComponentMap = {
-    add: AddItem,
-    del: DeleteItem,
-    edit: EditItem,
-  };
-
   return (
     <section className={styles.section}>
       {diffValue &&
         diffValue.map((item) => {
-          const Component = ComponentMap[item.code] || DefaultComponent;
+          const Component =
+            item.code === "edit" ? EditItem : AddedOrRemovedItem;
+          const props =
+            item.code === "edit" ? { item } : { item, type: item.code };
 
-          return <Component key={item.id} item={item} />;
+          return <Component key={item.id} {...props} />;
         })}
     </section>
   );
