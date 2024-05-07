@@ -13,15 +13,18 @@ export default function UpdatedValueChecker() {
 
   return (
     <section className={styles.section}>
-      {diffValue &&
-        diffValue.map((item) => {
-          const Component =
-            item.code === "edit" ? EditItem : AddedOrRemovedItem;
-          const props =
-            item.code === "edit" ? { item } : { item, type: item.code };
+      <h2 className={styles.title}>🚨 확인해주세요 🚨</h2>
+      <ul className={styles.list}>
+        {diffValue &&
+          diffValue.map((item) => {
+            const Component =
+              item.code === "edit" ? EditItem : AddedOrRemovedItem;
+            const props =
+              item.code === "edit" ? { item } : { item, type: item.code };
 
-          return <Component key={item.id} {...props} />;
-        })}
+            return <Component key={item.id} {...props} />;
+          })}
+      </ul>
     </section>
   );
 }

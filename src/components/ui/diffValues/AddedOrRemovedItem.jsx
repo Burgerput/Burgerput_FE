@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./AddedOrRemovedItem.module.css";
 
 export default function AddedOrRemovedItem({ item, type }) {
   const { name, min, max } = item;
@@ -8,10 +9,10 @@ export default function AddedOrRemovedItem({ item, type }) {
   };
   return (
     <article>
-      <h2>{titles[type]}</h2>
-      <p>{name}</p>
-      <p>
-        {min} ~ {max}
+      <h3 className={styles.title}>{titles[type]}</h3>
+      <p className={styles.name}>{name}</p>
+      <p className={styles.temp}>
+        {min}ºF ~ {max}ºF
       </p>
     </article>
   );

@@ -1,0 +1,13 @@
+.title {
+  margin-bottom: 5px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail__desc span {
+  font-weight: bold;
+}
