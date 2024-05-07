@@ -28,3 +28,7 @@
   border-bottom: 1px solid var(--navbar-background-color);
   padding-bottom: 12px;
 }
+
+.list h3 {
+  margin-bottom: 8px;
+}

@@ -1,11 +1,8 @@
-.title {
-  margin-bottom: 5px;
-}
-
 .name {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .temp {
-  font-size: 13px;
+  font-size: 12px;
+  padding-left: 1px;
 }

@@ -13,7 +13,7 @@ export default function UpdatedValueChecker() {
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>🚨 확인해주세요 🚨</h2>
+      <h2 className={styles.title}>👀 확인해주세요 👀</h2>
       <ul className={styles.list}>
         {diffValue &&
           diffValue.map((item) => {

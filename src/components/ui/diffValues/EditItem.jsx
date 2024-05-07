@@ -4,9 +4,9 @@ import styles from "./EditItem.module.css";
 function ChangedValueComponent({ type, list }) {
   const [prev, cur] = list;
   const titles = {
-    min: "으로 최소 온도가 변경되었어요.",
-    max: "으로 최대 온도가 변경되었어요.",
-    name: "로 이름이 변경되었어요.",
+    min: "으로 최소 온도 변경",
+    max: "으로 최대 온도 변경",
+    name: "로 이름 변경",
   };
 
   return (

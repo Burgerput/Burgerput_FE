@@ -12,7 +12,7 @@ export default function AddedOrRemovedItem({ item, type }) {
       <h3 className={styles.title}>{titles[type]}</h3>
       <p className={styles.name}>{name}</p>
       <p className={styles.temp}>
-        {min}ºF ~ {max}ºF
+        ({min}ºF ~ {max}ºF)
       </p>
     </article>
   );
