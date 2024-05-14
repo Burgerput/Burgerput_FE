@@ -1,9 +1,9 @@
 import client from "./index";
 
 // 달라진 목록을 받아오는 api
-export async function getDiffInven() {
+export async function getDiffValue() {
   return await client
-    .get("/back/main")
+    .get("/loading/result")
     .then((res) => res.data)
     .catch((error) => console.log(error));
 }
