@@ -25,12 +25,6 @@ function App() {
     hiddenCount,
   } = useDisplay();
 
-  const { checkDate, reLoad, setResult, result, loading } = useDateCheck();
-
-  useEffect(() => {
-    checkDate();
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <section className={styles.wrapper}>

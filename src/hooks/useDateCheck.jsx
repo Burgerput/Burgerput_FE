@@ -84,3 +84,9 @@ export function useDateCheck() {
 
   return { checkDate, reLoad, setResult, loading, result };
 }
+
+// const { checkDate, reLoad, setResult, result, loading } = useDateCheck();
+
+// useEffect(() => {
+//   checkDate();
+// }, []);
