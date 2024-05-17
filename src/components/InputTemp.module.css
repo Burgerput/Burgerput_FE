@@ -1,0 +1,52 @@
+.label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text__title {
+  font-size: 1.3rem;
+}
+
+.text__temp {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+}
+
+.inputBox__btn {
+  margin-top: 1.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-missing);
+}
+
+.inputBox__input {
+  width: 6rem;
+  height: 3rem;
+  border: 1px solid var(--navbar-background-color);
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--navbar-background-color);
+  text-align: end;
+  padding-right: 0.2rem;
+  font-size: large;
+}
+
+.inputBox__temp {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.disabled__temp {
+  color: var(--color-missing);
+}
+
+.disabled__input {
+  color: var(--color-missing);
+  border-color: var(--color-missing);
+}

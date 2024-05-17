@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import InputTemp from "./InputTemp";
+import styles from "./InputTempForm.module.css";
 
 export default function InputTempForm({ products }) {
   const {
@@ -25,10 +26,14 @@ export default function InputTempForm({ products }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <ul>
+    <form
+      className={styles.form}
+      id="inputMachine"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <ul className={styles.products}>
         {products.map((product, idx) => (
-          <li key={idx}>
+          <li className={styles.product} key={idx}>
             <InputTemp
               product={product}
               register={register}
@@ -36,12 +41,13 @@ export default function InputTempForm({ products }) {
               idx={idx}
             />
             {errors.products && errors.products[idx] && (
-              <p>{errors.products[idx].temp.message}</p>
+              <small className={styles.error}>
+                {errors.products[idx].temp.message}
+              </small>
             )}
           </li>
         ))}
       </ul>
-      <button>제출</button>
     </form>
   );
 }
