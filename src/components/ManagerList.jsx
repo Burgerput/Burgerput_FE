@@ -16,7 +16,7 @@ export default function ManagerList({ mgrList }) {
 
   const handleChange = (e) => {
     if (e.value === "직접입력") {
-      setManager(null);
+      setManager("");
     } else {
       setManager(e);
     }
@@ -26,7 +26,7 @@ export default function ManagerList({ mgrList }) {
     <div className={styles.box}>
       <CreatableSelect
         className={styles.select}
-        placeholder={manager === null ? "입력" : "관리자 선택"}
+        placeholder={manager === "" ? "입력" : "관리자 선택"}
         options={[...options, { value: "직접입력", label: "직접 입력" }]}
         onChange={handleChange}
         value={manager}

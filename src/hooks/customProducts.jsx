@@ -51,7 +51,7 @@ export function useCustomProducts({ setProductsTemp }) {
   const setResult = useSetResult();
 
   const onSubmit = (formData) => {
-    if (manager === null) {
+    if (manager === null || manager.length < 0) {
       handleWarning();
       return;
     }
