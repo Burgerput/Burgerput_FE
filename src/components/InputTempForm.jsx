@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import InputTemp from "./InputTemp";
 import styles from "./InputTempForm.module.css";
 
-export default function InputTempForm({ products }) {
+export default function InputTempForm({ onSubmit, products }) {
   const {
     register,
     handleSubmit,
@@ -21,14 +21,10 @@ export default function InputTempForm({ products }) {
     },
   });
 
-  const onSubmit = (formData) => {
-    console.log(formData);
-  };
-
   return (
     <form
       className={styles.form}
-      id="inputMachine"
+      id="inputForm"
       onSubmit={handleSubmit(onSubmit)}
     >
       <ul className={styles.products}>

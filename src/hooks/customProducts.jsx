@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { useHandleWaring, useSetLoading, useSetResult } from "../store/uiState";
 import { useManagerState } from "../store/manager";
+import { useLocation } from "react-router-dom";
 
 function dataMutation(queryKey, getProductFunc, submitFunc, productKey) {
   const productsQuery = useQuery([queryKey], getProductFunc, {
@@ -38,39 +39,60 @@ export function useCustomFoods() {
   return dataMutation("customFoods", getCustomFoods, submitFoods, "customFood");
 }
 
-export function useCustomProducts({ location, setProductsTemp }) {
-  const [products, setProducts] = useState([]);
-  const handleWarning = useHandleWaring();
+export function useCustomProducts({ setProductsTemp }) {
+  // submit data
+  const [submissionData, setSubmissionData] = useState(null);
+  const location = useLocation();
   const manager = useManagerState();
+
+  // UI State.
+  const handleWarning = useHandleWaring();
   const setLoading = useSetLoading();
   const setResult = useSetResult();
 
-  const handleSubmit = (e) => {
-    e && e.preventDefault();
-    const hasEmptyTemp = products.some((product) => !product.temp);
-
-    if (hasEmptyTemp || manager === null) {
+  const onSubmit = (formData) => {
+    if (manager === null) {
       handleWarning();
       return;
     }
 
+    const products = formData.products;
+
+    const submissionPayload = { manager, products, location };
+
+    // 제출 후 에러 발생시 사용될 데이터 저장.
+    setSubmissionData(submissionPayload);
     setLoading(true);
 
-    setProductsTemp({
-      manager,
-      products,
-      location,
-    })
+    setProductsTemp(submissionPayload)
       .then((res) => {
         setResult(res.data);
       })
       .finally(() => setLoading(false))
-      .catch(console.error);
+      .catch((error) => {
+        console.error(error);
+        setResult("error");
+      });
+  };
+
+  const handleRetrySubmit = () => {
+    if (!submissionData) return;
+
+    setLoading(true);
+    setProductsTemp(submissionData)
+      .then((res) => {
+        setResult(res.data);
+      })
+      .finally(() => setLoading(false))
+      .catch((error) => {
+        console.error(error);
+        setResult("error");
+      });
   };
 
   return {
-    handleSubmit,
-    products,
-    setProducts,
+    location,
+    onSubmit,
+    handleRetrySubmit,
   };
 }
