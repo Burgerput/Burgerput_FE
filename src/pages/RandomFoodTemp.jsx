@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
 import SetTemp from "../components/SetTemp";
-import { useCheatFoods, useCheatProducts } from "../hooks/useCheat";
+import { useCheatProducts } from "../hooks/useCheat";
 import ManagerList from "../components/ManagerList";
 import Banner from "../components/Banner";
 import Modal from "../components/Modal";
+import { useRandomFoodTemp } from "../hooks/RandomTemp";
 
 export default function RandomFoodTemp() {
-  const { submitCustomTemp, data, setCustomTemp } = useCheatFoods();
+  const { submitCustomTemp, data, setCustomTemp } = useRandomFoodTemp();
   const {
     handleSave,
     handleSubmit,

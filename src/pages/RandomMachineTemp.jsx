@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
 import SetTemp from "../components/SetTemp";
-import { useCheatMachines, useCheatProducts } from "../hooks/useCheat";
+import { useCheatProducts } from "../hooks/useCheat";
 import ManagerList from "../components/ManagerList";
 import Banner from "../components/Banner";
 import Modal from "../components/Modal";
+import { useRandomMachineTemp } from "../hooks/RandomTemp";
 
 export default function RandomMachineTemp() {
-  const { submitCustomTemp, data, setCustomTemp } = useCheatMachines();
+  const { submitCustomTemp, data, setCustomTemp } = useRandomMachineTemp();
   const {
     handleSave,
     handleSubmit,
