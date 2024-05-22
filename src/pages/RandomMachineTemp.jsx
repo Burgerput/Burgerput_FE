@@ -82,34 +82,34 @@ export default function RandomMachineTemp() {
     //         </li>
     //       ))}
     //   </form>
-    //   <section className={styles.btnContainer}>
-    //     <button
-    //       className={styles.saveBtn}
-    //       onClick={handleSave}
-    //       disabled={success || warning}
-    //     >
-    //       범위 저장
-    //     </button>
-    //     <button
-    //       className={styles.submitBtn}
-    //       onClick={(e) => {
-    //         setTime.current = "AM";
-    //         handleSubmit(e);
-    //       }}
-    //       disabled={success || warning}
-    //     >
-    //       오전 기기 제출
-    //     </button>
-    //     <button
-    //       className={styles.submitBtn}
-    //       onClick={(e) => {
-    //         setTime.current = "PM";
-    //         handleSubmit(e);
-    //       }}
-    //       disabled={success || warning}
-    //     >
-    //       오후 기기 제출
-    //     </button>
+      // <section className={styles.btnContainer}>
+      //   <button
+      //     className={styles.saveBtn}
+      //     onClick={handleSave}
+      //     disabled={success || warning}
+      //   >
+      //     범위 저장
+      //   </button>
+      //   <button
+      //     className={styles.submitBtn}
+      //     onClick={(e) => {
+      //       setTime.current = "AM";
+      //       handleSubmit(e);
+      //     }}
+      //     disabled={success || warning}
+      //   >
+      //     오전 기기 제출
+      //   </button>
+      //   <button
+      //     className={styles.submitBtn}
+      //     onClick={(e) => {
+      //       setTime.current = "PM";
+      //       handleSubmit(e);
+      //     }}
+      //     disabled={success || warning}
+      //   >
+      //     오후 기기 제출
+      //   </button>
     //   </section>
     // </section>
   );
