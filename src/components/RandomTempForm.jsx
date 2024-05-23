@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import RandomTemp from "./RandomTemp";
+import { useSuccess, useWarning } from "../store/uiState";
 
-export default function RandomTempForm({ products }) {
+export default function RandomTempForm({ products, onSaveRandomRange }) {
   const { handleSubmit, control, setValue } = useForm({
     mode: "onSubmit",
     defaultValues: {
       products: products.map(({ id, name, min, max }) => ({
         id,
         name,
-        temp: [Number(min), Number(max)],
+        min: Number(min),
+        max: Number(max),
       })),
     },
   });
 
+  const warning = useWarning();
+  const success = useSuccess();
+
   const onSaveTemp = (formData) => {
-    console.log("Save!", formData);
+    const products = formData.products;
+
+    onSaveRandomRange(products);
   };
 
   const onSubmitAM = (formData) => {
@@ -28,6 +35,8 @@ export default function RandomTempForm({ products }) {
 
   return (
     <form>
+      {warning && <p>{warning}</p>}
+      {success && <p>저장 성공!</p>}
       <ul>
         {products.map((product, idx) => (
           <li key={idx}>

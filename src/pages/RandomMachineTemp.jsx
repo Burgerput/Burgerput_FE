@@ -7,9 +7,11 @@ import Banner from "../components/Banner";
 import Modal from "../components/Modal";
 import { useRandomMachineTemp } from "../hooks/RandomTemp";
 import RandomTempForm from "../components/RandomTempForm";
+import { useHandleWaring } from "../store/uiState";
 
 export default function RandomMachineTemp() {
   const { submitCustomTemp, data, setCustomTemp } = useRandomMachineTemp();
+  const handleWarning = useHandleWaring();
   // const {
   //   handleSave,
   //   handleSubmit,
@@ -28,10 +30,24 @@ export default function RandomMachineTemp() {
   //   setProducts(data?.customCheatMachine);
   // }, [data]);
 
+  const onSaveRandomRange = (products) => {
+    const hasDisabled = products.some((product) => product.min === 999);
+
+    if (hasDisabled) {
+      handleWarning(1500, "결품 범위는 저장할 수 없습니다.");
+      return;
+    }
+
+    setCustomTemp.mutate({ products });
+  };
+
   return (
     <section>
       {data?.customCheatMachine && (
-        <RandomTempForm products={data.customCheatMachine} />
+        <RandomTempForm
+          products={data.customCheatMachine}
+          onSaveRandomRange={onSaveRandomRange}
+        />
       )}
     </section>
     // <section className={styles.section}>
@@ -82,34 +98,34 @@ export default function RandomMachineTemp() {
     //         </li>
     //       ))}
     //   </form>
-      // <section className={styles.btnContainer}>
-      //   <button
-      //     className={styles.saveBtn}
-      //     onClick={handleSave}
-      //     disabled={success || warning}
-      //   >
-      //     범위 저장
-      //   </button>
-      //   <button
-      //     className={styles.submitBtn}
-      //     onClick={(e) => {
-      //       setTime.current = "AM";
-      //       handleSubmit(e);
-      //     }}
-      //     disabled={success || warning}
-      //   >
-      //     오전 기기 제출
-      //   </button>
-      //   <button
-      //     className={styles.submitBtn}
-      //     onClick={(e) => {
-      //       setTime.current = "PM";
-      //       handleSubmit(e);
-      //     }}
-      //     disabled={success || warning}
-      //   >
-      //     오후 기기 제출
-      //   </button>
+    // <section className={styles.btnContainer}>
+    //   <button
+    //     className={styles.saveBtn}
+    //     onClick={handleSave}
+    //     disabled={success || warning}
+    //   >
+    //     범위 저장
+    //   </button>
+    //   <button
+    //     className={styles.submitBtn}
+    //     onClick={(e) => {
+    //       setTime.current = "AM";
+    //       handleSubmit(e);
+    //     }}
+    //     disabled={success || warning}
+    //   >
+    //     오전 기기 제출
+    //   </button>
+    //   <button
+    //     className={styles.submitBtn}
+    //     onClick={(e) => {
+    //       setTime.current = "PM";
+    //       handleSubmit(e);
+    //     }}
+    //     disabled={success || warning}
+    //   >
+    //     오후 기기 제출
+    //   </button>
     //   </section>
     // </section>
   );

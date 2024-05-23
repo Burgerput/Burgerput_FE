@@ -5,6 +5,7 @@ import {
   setCustomTempFood,
   setCustomTempMachine,
 } from "../api/Products";
+import { useHandleSuccess } from "../store/uiState";
 
 function dataMutation(queryKey, getItemFunc, setCustomTempFunc, submitFunc) {
   const { data } = useQuery([queryKey], getItemFunc, {
@@ -13,12 +14,14 @@ function dataMutation(queryKey, getItemFunc, setCustomTempFunc, submitFunc) {
   });
 
   const queryClient = useQueryClient();
+  const handleSuccess = useHandleSuccess();
 
   const setCustomTemp = useMutation(
     ({ products }) => setCustomTempFunc(products),
     {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey]);
+        handleSuccess();
       },
     }
   );

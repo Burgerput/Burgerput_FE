@@ -7,8 +7,8 @@ const useSubmitStateStore = create((set) => ({
   result: false,
 
   actions: {
-    handleWarning: (duration = 1000) => {
-      set({ warning: true });
+    handleWarning: (duration = 1000, warning = true) => {
+      set({ warning });
       setTimeout(() => {
         set({ warning: false });
       }, duration);
