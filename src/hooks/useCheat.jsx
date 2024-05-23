@@ -8,7 +8,7 @@ import {
   submitMachines,
 } from "../api/Products";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useRandomTemp } from "./useRandomTemp";
+import { useGenerateRandomTemp } from "./useGenerateRandomTemp";
 import { useManagerState } from "../store/manager";
 
 export function useCheatProducts({ setCustomTemp, submitCustomTemp }) {
@@ -22,7 +22,7 @@ export function useCheatProducts({ setCustomTemp, submitCustomTemp }) {
   });
 
   const setTime = useRef();
-  const { generateRandomTemp } = useRandomTemp();
+  const { generateRandomTemp } = useGenerateRandomTemp();
 
   const handleWarning = (type) => {
     type === "missing" &&
@@ -60,7 +60,6 @@ export function useCheatProducts({ setCustomTemp, submitCustomTemp }) {
   const handleSubmit = (e) => {
     e && e.preventDefault();
 
-    const newProducts = generateRandomTemp(products);
     const time = setTime?.current;
 
     if (!manager) {

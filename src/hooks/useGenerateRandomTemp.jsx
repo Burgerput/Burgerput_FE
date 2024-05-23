@@ -1,4 +1,4 @@
-export function useRandomTemp() {
+export function useGenerateRandomTemp() {
   /**
    * 지정된 최소, 최대 온도 범위를 이용해 랜덤한 온도를 제출하는 함수
    * @param {Object[]} products

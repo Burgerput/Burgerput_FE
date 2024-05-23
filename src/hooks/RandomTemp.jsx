@@ -4,10 +4,18 @@ import {
   getCustomTempMachine,
   setCustomTempFood,
   setCustomTempMachine,
+  submitFoods,
+  submitMachines,
 } from "../api/Products";
 import { useHandleSuccess } from "../store/uiState";
 
-function dataMutation(queryKey, getItemFunc, setCustomTempFunc, submitFunc) {
+function dataMutation(
+  queryKey,
+  getItemFunc,
+  setCustomTempFunc,
+  submitFunc,
+  productKey
+) {
   const { data } = useQuery([queryKey], getItemFunc, {
     staleTime: Infinity,
     cacheTime: Infinity,
@@ -26,10 +34,10 @@ function dataMutation(queryKey, getItemFunc, setCustomTempFunc, submitFunc) {
     }
   );
 
-  const submitCustomTemp = ({ manager, newProducts, time }) =>
+  const submitCustomTemp = ({ manager, products, time }) =>
     submitFunc({
       mgrname: manager?.label,
-      [productKey]: newProducts,
+      [productKey]: products,
       time,
     });
 
@@ -41,6 +49,7 @@ export function useRandomMachineTemp() {
     "randomMachineTemp",
     getCustomTempMachine,
     setCustomTempMachine,
+    submitMachines,
     "customMachine"
   );
 }
@@ -50,6 +59,7 @@ export function useRandomFoodTemp() {
     "randomFoodTemp",
     getCustomTempFood,
     setCustomTempFood,
+    submitFoods,
     "customFood"
   );
 }
