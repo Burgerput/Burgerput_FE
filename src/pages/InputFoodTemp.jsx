@@ -6,15 +6,14 @@ import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
 import { useCustomFoods, useCustomProducts } from "../hooks/customProducts";
-import { useLoading, useResult, useWarning } from "../store/uiState";
+import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import InputTempForm from "../components/InputTempForm";
 
 export default function InputFoodTemp() {
   const { handleClick } = useGoHome();
 
-  const warning = useWarning();
-  const loading = useLoading();
-  const result = useResult();
+  const { warning, loading, result } = useSubmitStates();
+  const { resetState } = useSubmitActions();
 
   const {
     productsQuery: { isLoading, error, data },
@@ -24,6 +23,12 @@ export default function InputFoodTemp() {
   const { onSubmit, handleRetrySubmit } = useCustomProducts({
     setProductsTemp,
   });
+
+  useEffect(() => {
+    return () => {
+      resetState();
+    };
+  }, [resetState]);
 
   return (
     <>

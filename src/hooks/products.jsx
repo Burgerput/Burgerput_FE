@@ -6,12 +6,12 @@ import {
   setCustomMachines,
 } from "../api/Products";
 import { useCustomProducts } from "../store/products";
-import { useHandleSuccess } from "../store/uiState";
+import { useSubmitActions } from "../store/uiState";
 
 function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
   const queryClient = useQueryClient();
   const products = useCustomProducts();
-  const handleSuccess = useHandleSuccess();
+  const { handleSuccess } = useSubmitActions();
 
   const productsQuery = useQuery([queryKey], getItemFunc, {
     staleTime: Infinity,

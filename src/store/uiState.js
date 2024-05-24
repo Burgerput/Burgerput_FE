@@ -34,26 +34,6 @@ const useSubmitStateStore = create((set) => ({
       }),
   },
 }));
-
-export const useWarning = () => useSubmitStateStore((state) => state.warning);
-export const useHandleWaring = () =>
-  useSubmitStateStore((state) => state.actions.handleWarning);
-
-export const useSuccess = () => useSubmitStateStore((state) => state.success);
-export const useHandleSuccess = () =>
-  useSubmitStateStore((state) => state.actions.handleSuccess);
-
-export const useLoading = () => useSubmitStateStore((state) => state.loading);
-export const useSetLoading = () =>
-  useSubmitStateStore((state) => state.actions.setLoading);
-
-export const useResult = () => useSubmitStateStore((state) => state.result);
-export const useSetResult = () =>
-  useSubmitStateStore((state) => state.actions.setResult);
-
-export const useResetState = () =>
-  useSubmitStateStore((state) => state.actions.resetState);
-
 export const useSubmitStates = () =>
   useSubmitStateStore(
     useShallow(({ loading, warning, success, result }) => ({

@@ -5,7 +5,7 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Banner from "../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
-import { useHandleSuccess, useSuccess } from "../store/uiState";
+import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import { useAdminProfile } from "../hooks/Admins";
 
 export default function AdminProfile() {
@@ -22,8 +22,8 @@ export default function AdminProfile() {
   } = useAdminProfile();
 
   const { handleClick } = useGoHome();
-  const success = useSuccess();
-  const handleSuccess = useHandleSuccess();
+  const { success } = useSubmitStates();
+  const { handleSuccess } = useSubmitActions();
 
   return (
     <section className={styles.section}>
