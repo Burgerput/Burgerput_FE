@@ -1,79 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
-import SetTemp from "../components/SetTemp";
 import ManagerList from "../components/ManagerList";
 import Banner from "../components/Banner";
 import Modal from "../components/Modal";
-import { useRandomMachineTemp } from "../hooks/RandomTemp";
-import RandomTempForm from "../components/RandomTempForm";
 import {
-  useHandleWaring,
-  useLoading,
-  useResult,
-  useSetLoading,
-  useSetResult,
-  useSuccess,
-  useWarning,
-} from "../store/uiState";
-import { useManagerState } from "../store/manager";
+  useRandomMachineTemp,
+  useSaveRandomRange,
+  useSubmitRandomRange,
+} from "../hooks/RandomTemp";
+import RandomTempForm from "../components/RandomTempForm";
+import { useSubmitActions, useSubmitStates } from "../store/uiState";
 
 export default function RandomMachineTemp() {
   const { submitCustomTemp, data, setCustomTemp } = useRandomMachineTemp();
-  const [submissionData, setSubmissionData] = useState(null);
-  const manager = useManagerState();
 
-  const result = useResult();
-  const loading = useLoading();
-  const warning = useWarning();
-  const success = useSuccess();
+  const { onSubmitRandomRange, handleRetrySubmit } = useSubmitRandomRange({
+    submitCustomTemp,
+  });
 
-  const handleWarning = useHandleWaring();
-  const setLoading = useSetLoading();
-  const setResult = useSetResult();
+  const { onSaveRandomRange } = useSaveRandomRange({ setCustomTemp });
 
-  const onSaveRandomRange = (products) => {
-    const hasDisabled = products.some((product) => product.min === 999);
+  const { loading, warning, success, result } = useSubmitStates();
+  const { resetState } = useSubmitActions();
 
-    if (hasDisabled) {
-      handleWarning(1500, "결품 범위는 저장할 수 없습니다.");
-      return;
-    }
-
-    setCustomTemp.mutate({ products });
-  };
-
-  const onSubmitRandomRange = (products, time) => {
-    if (manager === null || manager.length === 0) {
-      handleWarning(1500, "매니저를 선택해주세요.");
-      return;
-    }
-
-    const submissionPayload = { manager, products, time };
-
-    setSubmissionData(submissionPayload);
-    setLoading(true);
-
-    submitCustomTemp(submissionPayload)
-      .then((res) => setResult(res.data))
-      .finally(() => setLoading(false))
-      .catch((error) => {
-        console.error(error);
-        setResult("error");
-      });
-  };
-
-  const handleRetrySubmit = () => {
-    if (!submissionData) return;
-
-    setLoading(true);
-    submitCustomTemp(submissionData)
-      .then((res) => setResult(res.data))
-      .finally(() => setLoading(false))
-      .catch((error) => {
-        console.error(error);
-        setResult("error");
-      });
-  };
+  useEffect(() => {
+    return () => {
+      resetState();
+    };
+  }, [resetState]);
 
   return (
     <section className={styles.section}>
@@ -97,10 +51,10 @@ export default function RandomMachineTemp() {
           }
         />
       )}
-      {result.result === "true" && (
+      {result && result.result === "true" && (
         <Modal title={"제출"} component={"값을 정상적으로 제출했습니다."} />
       )}
-      {result === "error" && (
+      {result && result === "error" && (
         <Modal
           title={"에러 발생"}
           error={true}

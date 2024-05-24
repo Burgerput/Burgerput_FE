@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useShallow } from "zustand/react/shallow";
 
 const useSubmitStateStore = create((set) => ({
   loading: false,
@@ -52,3 +53,24 @@ export const useSetResult = () =>
 
 export const useResetState = () =>
   useSubmitStateStore((state) => state.actions.resetState);
+
+export const useSubmitStates = () =>
+  useSubmitStateStore(
+    useShallow(({ loading, warning, success, result }) => ({
+      loading,
+      warning,
+      success,
+      result,
+    }))
+  );
+
+export const useSubmitActions = () =>
+  useSubmitStateStore(
+    useShallow(({ actions }) => ({
+      handleWarning: actions.handleWarning,
+      handleSuccess: actions.handleSuccess,
+      setLoading: actions.setLoading,
+      setResult: actions.setResult,
+      resetState: actions.resetState,
+    }))
+  );
