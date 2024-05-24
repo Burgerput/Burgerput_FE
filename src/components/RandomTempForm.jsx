@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import RandomTemp from "./RandomTemp";
 import { useGenerateRandomTemp } from "../hooks/useGenerateRandomTemp";
+import styles from "./RandomTempForm.module.css";
 
 export default function RandomTempForm({
   products,
@@ -41,28 +42,32 @@ export default function RandomTempForm({
   };
 
   return (
-    <form>
-      <ul>
-        {products.map((product, idx) => (
-          <li key={idx}>
-            <RandomTemp
-              idx={idx}
-              product={product}
-              control={control}
-              setValue={setValue}
-            />
-          </li>
-        ))}
-      </ul>
-      <button type="button" onClick={handleSubmit(onSaveTemp)}>
-        저장
-      </button>
-      <button type="button" onClick={handleSubmit(onSubmitAM)}>
-        오전 제출
-      </button>
-      <button type="button" onClick={handleSubmit(onSubmitPM)}>
-        오후 제출
-      </button>
-    </form>
+    <section className={styles.section}>
+      <form className={styles.form}>
+        <ul>
+          {products.map((product, idx) => (
+            <li key={idx}>
+              <RandomTemp
+                idx={idx}
+                product={product}
+                control={control}
+                setValue={setValue}
+              />
+            </li>
+          ))}
+        </ul>
+      </form>
+      <section className={styles.btnContainer}>
+        <button type="button" onClick={handleSubmit(onSaveTemp)}>
+          범위 저장
+        </button>
+        <button type="button" onClick={handleSubmit(onSubmitAM)}>
+          오전 제출
+        </button>
+        <button type="button" onClick={handleSubmit(onSubmitPM)}>
+          오후 제출
+        </button>
+      </section>
+    </section>
   );
 }

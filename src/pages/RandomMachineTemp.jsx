@@ -21,14 +21,15 @@ export default function RandomMachineTemp() {
   const { submitCustomTemp, data, setCustomTemp } = useRandomMachineTemp();
   const [submissionData, setSubmissionData] = useState(null);
   const manager = useManagerState();
-  const handleWarning = useHandleWaring();
-  const setLoading = useSetLoading();
-  const setResult = useSetResult();
 
   const result = useResult();
   const loading = useLoading();
   const warning = useWarning();
   const success = useSuccess();
+
+  const handleWarning = useHandleWaring();
+  const setLoading = useSetLoading();
+  const setResult = useSetResult();
 
   const onSaveRandomRange = (products) => {
     const hasDisabled = products.some((product) => product.min === 999);
