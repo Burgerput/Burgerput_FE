@@ -1,22 +1,23 @@
-.section {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
 .form {
   display: flex;
   flex: 1;
   flex-direction: column;
-  overflow: auto;
+  justify-content: space-between;
+}
+
+.list {
+  height: 480px;
+  display: flex;
+  flex-direction: column;
   padding: 2rem 2.5rem;
+  overflow: auto;
 }
 
 .btnContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 0;
   background-color: var(--navbar-background-color);
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import RandomTemp from "./RandomTemp";
 import { useGenerateRandomTemp } from "../hooks/useGenerateRandomTemp";
 import styles from "./RandomTempForm.module.css";
@@ -11,12 +11,11 @@ export default function RandomTempForm({
 }) {
   const { handleSubmit, control, setValue } = useForm({
     mode: "onSubmit",
-    defaultValues: {
-      products: products.map(({ id, name, min, max }) => ({
-        id,
-        name,
-        min: Number(min),
-        max: Number(max),
+    values: {
+      products: products.map((product) => ({
+        ...product,
+        min: Number(product.min),
+        max: Number(product.max),
       })),
     },
   });
@@ -41,22 +40,25 @@ export default function RandomTempForm({
     onSubmitRandomRange(products, "PM");
   };
 
+  const { fields } = useFieldArray({
+    control,
+    name: "products",
+  });
+
   return (
-    <section className={styles.section}>
-      <form className={styles.form}>
-        <ul>
-          {products.map((product, idx) => (
-            <li key={idx}>
-              <RandomTemp
-                idx={idx}
-                product={product}
-                control={control}
-                setValue={setValue}
-              />
-            </li>
-          ))}
-        </ul>
-      </form>
+    <form className={styles.form}>
+      <ul className={styles.list}>
+        {fields.map((product, idx) => (
+          <li key={idx}>
+            <RandomTemp
+              idx={idx}
+              product={product}
+              control={control}
+              setValue={setValue}
+            />
+          </li>
+        ))}
+      </ul>
       <section className={styles.btnContainer}>
         <button type="button" onClick={handleSubmit(onSaveTemp)}>
           범위 저장
@@ -68,6 +70,6 @@ export default function RandomTempForm({
           오후 제출
         </button>
       </section>
-    </section>
+    </form>
   );
 }

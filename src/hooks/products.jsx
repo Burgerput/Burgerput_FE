@@ -47,6 +47,7 @@ export function useMachines() {
     "customMachines",
     "customMachinesTemp",
     "machines",
+    "randomMachineTemp",
   ]);
 }
 
@@ -55,5 +56,6 @@ export function useFoods() {
     "customFoods",
     "customFoodsTemp",
     "foods",
+    "randomFoodTemp",
   ]);
 }
