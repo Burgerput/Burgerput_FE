@@ -2,6 +2,7 @@ import Slider from "rc-slider";
 import React, { useCallback, useRef, useState } from "react";
 import { Controller, useWatch } from "react-hook-form";
 import styles from "./RandomTemp.module.css";
+import "rc-slider/assets/index.css";
 
 function RandomTemp({ idx, product, control, setValue }) {
   const { initMax, initMin, name } = product;
