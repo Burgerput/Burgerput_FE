@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { useShallow } from "zustand/react/shallow";
 
 const useSubmitStateStore = create((set) => ({
   loading: false,
@@ -7,8 +8,8 @@ const useSubmitStateStore = create((set) => ({
   result: false,
 
   actions: {
-    handleWarning: (duration = 1000) => {
-      set({ warning: true });
+    handleWarning: (duration = 1000, warning = true) => {
+      set({ warning });
       setTimeout(() => {
         set({ warning: false });
       }, duration);
@@ -33,22 +34,23 @@ const useSubmitStateStore = create((set) => ({
       }),
   },
 }));
+export const useSubmitStates = () =>
+  useSubmitStateStore(
+    useShallow(({ loading, warning, success, result }) => ({
+      loading,
+      warning,
+      success,
+      result,
+    }))
+  );
 
-export const useWarning = () => useSubmitStateStore((state) => state.warning);
-export const useHandleWaring = () =>
-  useSubmitStateStore((state) => state.actions.handleWarning);
-
-export const useSuccess = () => useSubmitStateStore((state) => state.success);
-export const useHandleSuccess = () =>
-  useSubmitStateStore((state) => state.actions.handleSuccess);
-
-export const useLoading = () => useSubmitStateStore((state) => state.loading);
-export const useSetLoading = () =>
-  useSubmitStateStore((state) => state.actions.setLoading);
-
-export const useResult = () => useSubmitStateStore((state) => state.result);
-export const useSetResult = () =>
-  useSubmitStateStore((state) => state.actions.setResult);
-
-export const useResetState = () =>
-  useSubmitStateStore((state) => state.actions.resetState);
+export const useSubmitActions = () =>
+  useSubmitStateStore(
+    useShallow(({ actions }) => ({
+      handleWarning: actions.handleWarning,
+      handleSuccess: actions.handleSuccess,
+      setLoading: actions.setLoading,
+      setResult: actions.setResult,
+      resetState: actions.resetState,
+    }))
+  );

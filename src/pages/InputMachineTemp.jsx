@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../components/Banner";
 import ManagerList from "../components/ManagerList";
 import Button from "../components/Button";
@@ -6,15 +6,14 @@ import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
 import { useCustomMachines, useCustomProducts } from "../hooks/customProducts";
-import { useLoading, useResult, useWarning } from "../store/uiState";
+import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import InputTempForm from "../components/InputTempForm";
 
 export default function InputMachineTemp() {
   const { handleClick } = useGoHome();
 
-  const warning = useWarning();
-  const loading = useLoading();
-  const result = useResult();
+  const { warning, loading, result } = useSubmitStates();
+  const { resetState } = useSubmitActions();
 
   const {
     productsQuery: { isLoading, error, data },
@@ -24,6 +23,12 @@ export default function InputMachineTemp() {
   const { onSubmit, handleRetrySubmit } = useCustomProducts({
     setProductsTemp,
   });
+
+  useEffect(() => {
+    return () => {
+      resetState();
+    };
+  }, [resetState]);
 
   return (
     <>

@@ -1,7 +1,7 @@
-import { useSetResult } from "../store/uiState";
+import { useSubmitActions } from "../store/uiState";
 
 export function useModal() {
-  const setResult = useSetResult();
+  const { setResult } = useSubmitActions();
 
   const close = () => {
     setResult(false);

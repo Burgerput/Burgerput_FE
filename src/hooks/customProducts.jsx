@@ -6,7 +6,7 @@ import {
   submitFoods,
 } from "../api/Products";
 import { useState } from "react";
-import { useHandleWaring, useSetLoading, useSetResult } from "../store/uiState";
+import { useSubmitActions } from "../store/uiState";
 import { useManagerState } from "../store/manager";
 import { useLocation } from "react-router-dom";
 
@@ -45,10 +45,8 @@ export function useCustomProducts({ setProductsTemp }) {
   const location = useLocation();
   const manager = useManagerState();
 
-  // UI State.
-  const handleWarning = useHandleWaring();
-  const setLoading = useSetLoading();
-  const setResult = useSetResult();
+  // UI State Actions.
+  const { handleWarning, setLoading, setResult } = useSubmitActions();
 
   const onSubmit = (formData) => {
     if (manager === null || manager.length < 0) {

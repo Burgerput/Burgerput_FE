@@ -5,12 +5,13 @@ import Banner from "./../components/Banner";
 import Button from "../components/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useMachines } from "../hooks/products";
-import { useSuccess } from "../store/uiState";
+import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import { useResetCustomProducts } from "../store/products";
 
 export default function CustomMachines() {
   const { handleClick } = useGoHome();
-  const success = useSuccess();
+  const { success } = useSubmitStates();
+  const { resetState } = useSubmitActions();
 
   const {
     productsQuery: { isLoading, error, data: machines },
@@ -22,8 +23,9 @@ export default function CustomMachines() {
   useEffect(() => {
     return () => {
       resetProducts();
+      resetState();
     };
-  }, []);
+  }, [resetProducts, resetState]);
 
   return (
     <>
@@ -34,7 +36,7 @@ export default function CustomMachines() {
           <div className={styles.title}>기기 선택</div>
           <div className={styles.wrapper}>
             <form
-              id='customMachine'
+              id="customMachine"
               className={styles.form}
               onSubmit={handleSubmitProducts}
             >

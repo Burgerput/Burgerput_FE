@@ -8,19 +8,24 @@
   padding-bottom: 1rem;
 }
 
-.header {
+.info {
   display: flex;
   flex-direction: column;
 }
 
-.name {
+.info__title {
   font-size: 1.3rem;
   margin-bottom: 0.3rem;
   width: 18rem;
 }
 
-.initTemp {
+.info__temp {
   font-size: 0.9rem;
+}
+
+.info__btn {
+  margin-left: 10px;
+  color: var(--color-missing);
 }
 
 .slider {
@@ -31,15 +36,10 @@
   width: 25rem;
 }
 
-.temp {
+.slider__temp {
   white-space: nowrap;
   font-size: 1rem;
   margin: 0 1rem;
-}
-
-.missing {
-  margin-left: 10px;
-  color: var(--color-missing);
 }
 
 .disabled {
