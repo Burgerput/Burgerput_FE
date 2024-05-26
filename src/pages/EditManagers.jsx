@@ -5,6 +5,7 @@ import { AiOutlineEnter } from "react-icons/ai";
 import { useGoHome } from "../hooks/useNavigator";
 import { useState } from "react";
 import { useEditManagers } from "../hooks/Admins";
+import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
 
 export default function EditManagers() {
   const [manager, setManager] = useState("");
@@ -31,47 +32,43 @@ export default function EditManagers() {
   };
 
   return (
-    <>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>{error}</div>}
-      {initialManagers && (
-        <section className={styles.section}>
-          <div className={styles.header}>
-            <div className={styles.title}>관리자 목록 수정</div>
-            <RiArrowGoBackFill
-              className={styles.header__button}
-              onClick={handleClick}
-            />
-          </div>
-
-          <ul className={styles.box}>
-            {initialManagers.map(({ id, mgrname }) => (
-              <li className={styles.card} key={id}>
-                <span className={styles.card__name}>{mgrname}</span>
-                <button
-                  onClick={() => {
-                    handleDelete(id, mgrname);
-                  }}
-                  className={styles.cover}
-                >
-                  <PiTrashBold />
-                </button>
-              </li>
-            ))}
-          </ul>
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <input
-              className={styles.input}
-              type="text"
-              value={manager}
-              onChange={handleChange}
-            />
-            <button className={styles.button}>
-              <AiOutlineEnter />
-            </button>
-          </form>
-        </section>
-      )}
-    </>
+    <section className={styles.section}>
+      <div className={styles.header}>
+        <div className={styles.title}>관리자 목록 수정</div>
+        <RiArrowGoBackFill
+          className={styles.header__button}
+          onClick={handleClick}
+        />
+      </div>
+      <ul className={styles.box}>
+        {error && <div>{error}</div>}
+        {isLoading && <LoadingBarSpinner />}
+        {initialManagers &&
+          initialManagers.map(({ id, mgrname }) => (
+            <li className={styles.card} key={id}>
+              <span className={styles.card__name}>{mgrname}</span>
+              <button
+                onClick={() => {
+                  handleDelete(id, mgrname);
+                }}
+                className={styles.cover}
+              >
+                <PiTrashBold />
+              </button>
+            </li>
+          ))}
+      </ul>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          className={styles.input}
+          type="text"
+          value={manager}
+          onChange={handleChange}
+        />
+        <button className={styles.button}>
+          <AiOutlineEnter />
+        </button>
+      </form>
+    </section>
   );
 }

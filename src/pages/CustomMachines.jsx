@@ -7,6 +7,7 @@ import { useGoHome } from "../hooks/useNavigator";
 import { useMachines } from "../hooks/products";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import { useResetCustomProducts } from "../store/products";
+import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
 
 export default function CustomMachines() {
   const { handleClick } = useGoHome();
@@ -28,38 +29,34 @@ export default function CustomMachines() {
   }, [resetProducts, resetState]);
 
   return (
-    <>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {machines && (
-        <section className={styles.section}>
-          <div className={styles.title}>기기 선택</div>
-          <div className={styles.wrapper}>
-            <form
-              id="customMachine"
-              className={styles.form}
-              onSubmit={handleSubmitProducts}
-            >
-              {success && <Banner text={"기기 선택이 완료되었습니다."} />}
-              <div className={styles.products}>
-                {machines &&
-                  machines.map((machine) => (
-                    <div key={machine.id}>
-                      <CustomProduct
-                        value={machine}
-                        checkedIt={machine.isChecked === "true" ? true : false}
-                      />
-                    </div>
-                  ))}
-              </div>
-            </form>
-            <div className={styles.buttons}>
-              <Button text={"저장"} type={"submit"} form={"customMachine"} />
-              <Button text={"취소"} handleFunction={handleClick} />
-            </div>
+    <section className={styles.section}>
+      <div className={styles.title}>기기 선택</div>
+      <div className={styles.wrapper}>
+        <form
+          id="customMachine"
+          className={styles.form}
+          onSubmit={handleSubmitProducts}
+        >
+          {success && <Banner text={"기기 선택이 완료되었습니다."} />}
+          <div className={styles.products}>
+            {error && <p>{error}</p>}
+            {isLoading && <LoadingBarSpinner />}
+            {machines &&
+              machines.map((machine) => (
+                <div key={machine.id}>
+                  <CustomProduct
+                    value={machine}
+                    checkedIt={machine.isChecked === "true" ? true : false}
+                  />
+                </div>
+              ))}
           </div>
-        </section>
-      )}
-    </>
+        </form>
+        <div className={styles.buttons}>
+          <Button text={"저장"} type={"submit"} form={"customMachine"} />
+          <Button text={"취소"} handleFunction={handleClick} />
+        </div>
+      </div>
+    </section>
   );
 }

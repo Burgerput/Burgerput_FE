@@ -18,7 +18,7 @@ function dataMutation(
   submitFunc,
   productKey
 ) {
-  const { data } = useQuery([queryKey], getItemFunc, {
+  const { data, isLoading } = useQuery([queryKey], getItemFunc, {
     staleTime: Infinity,
     cacheTime: Infinity,
   });
@@ -43,7 +43,7 @@ function dataMutation(
       time,
     });
 
-  return { data, setCustomTemp, submitCustomTemp };
+  return { data, isLoading, setCustomTemp, submitCustomTemp };
 }
 
 export function useRandomMachineTemp() {

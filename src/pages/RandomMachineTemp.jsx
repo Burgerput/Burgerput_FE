@@ -10,9 +10,12 @@ import {
 } from "../hooks/RandomTemp";
 import RandomTempForm from "../components/RandomTempForm";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
+import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
+import PacmanSpinner from "../components/ui/PacmanSpinner";
 
 export default function RandomMachineTemp() {
-  const { submitCustomTemp, data, setCustomTemp } = useRandomMachineTemp();
+  const { submitCustomTemp, data, isLoading, setCustomTemp } =
+    useRandomMachineTemp();
 
   const { onSubmitRandomRange, handleRetrySubmit } = useSubmitRandomRange({
     submitCustomTemp,
@@ -39,18 +42,7 @@ export default function RandomMachineTemp() {
       </div>
       {warning && <Banner text={warning} />}
       {success && <Banner text={"지정한 범위를 저장했습니다."} />}
-      {loading && (
-        <Banner
-          type={"loading"}
-          text={
-            <img
-              src="/spinner/spinner.gif"
-              width="60%"
-              style={{ paddingTop: "2px" }}
-            />
-          }
-        />
-      )}
+      {loading && <PacmanSpinner />}
       {result && result.result === "true" && (
         <Modal title={"제출"} component={"값을 정상적으로 제출했습니다."} />
       )}
@@ -62,6 +54,7 @@ export default function RandomMachineTemp() {
           component={"입력에 실패했습니다. 다시 시도해주세요."}
         />
       )}
+      {isLoading && <LoadingBarSpinner />}
       {data?.customCheatMachine && (
         <RandomTempForm
           products={data.customCheatMachine}
