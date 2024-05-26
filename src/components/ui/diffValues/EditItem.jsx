@@ -24,7 +24,7 @@ export default function EditItem({ item }) {
 
   return (
     <article>
-      <h3 className={styles.title}>{name}가 변경됐어요!</h3>
+      <h3 className={styles.title}>{name}이(가) 변경됐어요!</h3>
       <ul className={styles.detail}>
         {diff.map((list, index) => {
           const keys = Object.keys(list);
