@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import Main from "./pages/Main";
 import AdminProfile from "./pages/AdminProfile";
 import CustomMachines from "./pages/CustomMachines";
@@ -14,12 +18,25 @@ import NotFound from "./pages/NotFound";
 import CheatModeGuide from "./pages/CheatModeGuide";
 import RandomMachineTemp from "./pages/RandomMachineTemp";
 import RandomFoodTemp from "./pages/RandomFoodTemp";
+import SignIn from "./pages/SignIn";
+import { getUser } from "./api/user";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <NotFound />,
+    loader: async () => {
+      const data = await getUser();
+
+      const token = data?.AccessToken;
+
+      if (!token) {
+        throw redirect("/signin");
+      }
+
+      return data;
+    },
     children: [
       { index: true, path: "/", element: <Main /> },
       { path: "address", element: <AdminProfile /> },
@@ -34,8 +51,8 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "*",
-    element: <App />,
+    path: "signin",
+    element: <SignIn />,
   },
 ]);
 
