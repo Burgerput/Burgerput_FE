@@ -1,4 +1,5 @@
 import React from "react";
+import SignInForm from "../components/SignInForm";
 
 export default function SignIn() {
   return (
@@ -17,19 +18,7 @@ export default function SignIn() {
         번거로움은 없을 거예요!
       </p>
       <p></p>
-      <article>
-        <form>
-          <label htmlFor="id">
-            <p>ID</p>
-            <input type="text" id="id" />
-          </label>
-          <label htmlFor="password">
-            <p>password</p>
-            <input type="password" id="password" />
-          </label>
-          <button>로그인</button>
-        </form>
-      </article>
+      <SignInForm />
     </section>
   );
 }

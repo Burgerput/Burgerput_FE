@@ -1,0 +1,43 @@
+import React from "react";
+import { useForm } from "react-hook-form";
+
+export default function SignInForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: "onSubmit" });
+
+  const onSubmit = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="id">아이디</label>
+        <input
+          id="id"
+          type="text"
+          placeholder="아이디를 입력하세요!"
+          autoComplete="off"
+          {...register("id", {
+            required: "아이디는 필수 입력 사항입니다.",
+          })}
+        />
+        {errors.id && <small>{errors.id.message}</small>}
+      </div>
+      <div>
+        <label htmlFor="password">비밀번호</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="비밀번호를 입력하세요!"
+          {...register("password", {
+            required: "비밀번호는 필수 입력 사항입니다.",
+          })}
+        />
+        {errors.password && <small>{errors.password.message}</small>}
+      </div>
+      <button>로그인</button>
+    </form>
+  );
+}
