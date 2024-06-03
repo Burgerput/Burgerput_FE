@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { signIn } from "../api/user";
+import { useNavigate } from "react-router-dom";
 
 export default function SignInForm() {
   const {
@@ -8,7 +10,20 @@ export default function SignInForm() {
     formState: { errors },
   } = useForm({ mode: "onSubmit" });
 
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    signIn(data)
+      .then((res) => {
+        if (res) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("로그인 과정에 문제가 발생했어요!");
+      });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

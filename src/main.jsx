@@ -19,35 +19,46 @@ import CheatModeGuide from "./pages/CheatModeGuide";
 import RandomMachineTemp from "./pages/RandomMachineTemp";
 import RandomFoodTemp from "./pages/RandomFoodTemp";
 import SignIn from "./pages/SignIn";
-import { getUser } from "./api/user";
+
+const checkAuth = () => {
+  const token = localStorage.getItem("AccessToken");
+
+  if (!token) {
+    throw redirect("/signin");
+  }
+
+  return token;
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <NotFound />,
-    loader: async () => {
-      const data = await getUser();
-
-      const token = data?.AccessToken;
-
-      if (!token) {
-        throw redirect("/signin");
-      }
-
-      return data;
-    },
+    loader: checkAuth,
     children: [
-      { index: true, path: "/", element: <Main /> },
-      { path: "address", element: <AdminProfile /> },
-      { path: "select/machines", element: <CustomMachines /> },
-      { path: "select/foods", element: <CustomFoods /> },
-      { path: "select/managers", element: <EditManagers /> },
-      { path: "zenput/machines", element: <InputMachineTemp /> },
-      { path: "zenput/foods", element: <InputFoodTemp /> },
-      { path: "cheat/help", element: <CheatModeGuide /> },
-      { path: "cheat/machine", element: <RandomMachineTemp /> },
-      { path: "cheat/food", element: <RandomFoodTemp /> },
+      { index: true, path: "/", element: <Main />, loader: checkAuth },
+      { path: "address", element: <AdminProfile />, loader: checkAuth },
+      {
+        path: "select/machines",
+        element: <CustomMachines />,
+        loader: checkAuth,
+      },
+      { path: "select/foods", element: <CustomFoods />, loader: checkAuth },
+      { path: "select/managers", element: <EditManagers />, loader: checkAuth },
+      {
+        path: "zenput/machines",
+        element: <InputMachineTemp />,
+        loader: checkAuth,
+      },
+      { path: "zenput/foods", element: <InputFoodTemp />, loader: checkAuth },
+      { path: "cheat/help", element: <CheatModeGuide />, loader: checkAuth },
+      {
+        path: "cheat/machine",
+        element: <RandomMachineTemp />,
+        loader: checkAuth,
+      },
+      { path: "cheat/food", element: <RandomFoodTemp />, loader: checkAuth },
     ],
   },
   {
