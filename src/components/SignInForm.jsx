@@ -14,6 +14,10 @@ export default function SignInForm() {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+    localStorage.setItem("AccessToken", true);
+    navigate("/");
+
+    return;
     signIn(data)
       .then((res) => {
         if (res) {

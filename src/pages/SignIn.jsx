@@ -7,7 +7,10 @@ export default function SignIn() {
   return (
     <section className={styles.section}>
       <article className={styles.info}>
-        <h1 className={styles.info__title}>보안을 위해 로그인이 필요해요!</h1>
+        <h1 className={styles.info__title}>
+          <span className={styles.emphasize}>잠깐!</span> 보안을 위해 로그인이
+          필요해요!
+        </h1>
         <p className={styles.info__description}>
           버거풋은 웹에 공개되어 있어요. 일반 사용자가 악의적으로 젠풋을
           마음대로 입력할 수 있어 만일을 대비해 로그인 기능을 도입했어요.
