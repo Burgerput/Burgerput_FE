@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "../api/user";
 import { useNavigate } from "react-router-dom";
@@ -11,14 +11,18 @@ export default function SignInForm() {
     formState: { errors },
   } = useForm({ mode: "onSubmit" });
 
+  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
     signIn(data)
-      .then((res) => {
-        if (res) {
+      .then((status) => {
+        if (status === 200) {
           navigate("/");
         }
+
+        setError(true);
       })
       .catch((err) => {
         console.error(err);
@@ -28,6 +32,7 @@ export default function SignInForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      {error && <p>로그인 에러 발생!</p>}
       <article className={styles.article}>
         <label className={styles.label} htmlFor="id">
           아이디
