@@ -6,7 +6,7 @@ export async function signIn(data) {
     .post("/signin", data)
     .then((res) => {
       if (res.status === 200) {
-        const AccessToken = res.data.AccessToken;
+        const AccessToken = res.data.accessToken;
         localStorage.setItem("AccessToken", AccessToken);
       }
 
@@ -20,7 +20,7 @@ export async function ReissueToken() {
     .post("/refresh-token") //
     .then((res) => {
       if (res.status === 200) {
-        const AccessToken = res.data.AccessToken;
+        const AccessToken = res.data.accessToken;
 
         localStorage.setItem("AccessToken", AccessToken);
 
