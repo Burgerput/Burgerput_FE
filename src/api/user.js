@@ -29,6 +29,7 @@ export async function ReissueToken() {
     })
     .catch((e) => {
       localStorage.removeItem("AccessToken");
-      throw redirect("/signin");
+      window.location.href = "/signin";
+      return Promise.reject(error);
     });
 }

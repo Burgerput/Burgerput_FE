@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ReissueToken } from "./user";
-import { redirect } from "react-router-dom";
 
 const client = axios.create({
   // 로컬 테스트시 주석
@@ -40,19 +39,24 @@ client.interceptors.response.use(
       response: { status, data },
     } = error;
 
-    if (status === 401 && data.message === "InvalidToken") {
+    console.log(status);
+    console.log(data);
+
+    if (status === 401 && data === "InvalidToken") {
       localStorage.removeItem("AccessToken");
-      throw redirect("/signin");
+      window.location.href = "/signin";
+      return Promise.reject(error);
     }
 
-    if (status === 401 && data.message === "TokenExpired") {
+    if (status === 401 && data === "TokenExpired") {
       const status = await ReissueToken();
 
       if (status === 200) {
         return client(config);
       } else {
         localStorage.removeItem("AccessToken");
-        throw redirect("/signin");
+        window.location.href = "/signin";
+        return Promise.reject(error);
       }
     }
   }
