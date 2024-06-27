@@ -38,7 +38,7 @@ function App() {
             isOutletHidden ? `${styles.typeit}` : `${styles.typeit_hidden}`
           }
         >
-          {/* <TypeIt
+          <TypeIt
             options={{ loop: true, speed: 350, loopDelay: 8000 }}
             getBeforeInit={(instance) => {
               instance
@@ -50,9 +50,7 @@ function App() {
                 .pause(3000);
               return instance;
             }}
-          /> */}
-          <h1>고장남!!! 쓰지마세요!!</h1>
-          <h2>쓰지 말라고 했다!!!</h2>
+          />
           <img
             className={styles.image}
             onClick={handleCount}
