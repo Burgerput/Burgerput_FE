@@ -9,7 +9,6 @@ const client = axios.create({
   headers: {
     "Content-Type": "application/json",
     "Cache-Control": "no-cache",
-    "Access-Control-Allow-Origin": "*",
   },
   withCredentials: true,
 });
