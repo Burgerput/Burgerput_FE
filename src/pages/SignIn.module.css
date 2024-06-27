@@ -1,0 +1,47 @@
+.section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 100px;
+  justify-content: center;
+  color: var(--navbar-background-color);
+  font-family: "pretendard";
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+}
+
+.emphasize {
+  font-size: 3.5rem;
+}
+
+.info__title {
+  font-size: 3rem;
+  margin-bottom: 14px;
+}
+
+.info__description {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.article {
+  width: 900px;
+  margin-top: 50px;
+  display: flex;
+}
+
+.icon {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger {
+  font-size: 230px;
+}
