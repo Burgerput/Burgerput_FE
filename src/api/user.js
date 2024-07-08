@@ -8,11 +8,17 @@ export async function signIn(data) {
       if (res.status === 200) {
         const AccessToken = res.data.accessToken;
         localStorage.setItem("AccessToken", AccessToken);
-      }
 
-      return res.status;
+        return res.status;
+      }
     })
-    .catch(console.error);
+    .catch((err) => {
+      const { status, data } = err.response;
+
+      if (status === 401) {
+        return Promise.reject(data);
+      }
+    });
 }
 
 export async function ReissueToken() {

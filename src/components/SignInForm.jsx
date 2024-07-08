@@ -8,31 +8,37 @@ export default function SignInForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    resetField,
+    formState: { errors, isSubmitting },
   } = useForm({ mode: "onSubmit" });
 
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    signIn(data)
+  const onSubmit = async (data) => {
+    await signIn(data)
       .then((status) => {
         if (status === 200) {
           navigate("/");
         }
-
-        setError(true);
       })
       .catch((err) => {
-        console.error(err);
-        alert("로그인 과정에 문제가 발생했어요!");
+        if (err === "Invalid username/password supplied") {
+          resetField("password");
+          setError("비밀번호를 다시 한 번 확인해주세요.");
+        }
+
+        if (err === "Account not found") {
+          resetField("id");
+          setError("존재하지 않는 아이디입니다. 다시 입력해주세요.");
+        }
       });
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      {error && <p>로그인 에러 발생!</p>}
+      {error && <p className={styles.signinError}>{error}</p>}
       <article className={styles.article}>
         <label className={styles.label} htmlFor="id">
           아이디
@@ -53,21 +59,26 @@ export default function SignInForm() {
       </article>
       <article className={styles.article}>
         <label className={styles.label} htmlFor="password">
-          패스워드
+          비밀번호
         </label>
         <input
           className={styles.input}
           id="password"
           type="password"
           {...register("password", {
-            required: "패스워드는 필수 입력 사항입니다.",
+            required: "비밀번호는 필수 입력 사항입니다.",
           })}
         />
         {errors.password && (
           <small className={styles.error}>{errors.password.message}</small>
         )}
       </article>
-      <button className={styles.button}>로그인</button>
+      <button
+        disabled={isSubmitting}
+        className={`${styles.button} ${isSubmitting && styles.disabled}`}
+      >
+        로그인
+      </button>
     </form>
   );
 }

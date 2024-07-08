@@ -39,9 +39,6 @@ client.interceptors.response.use(
       response: { status, data },
     } = error;
 
-    console.log(status);
-    console.log(data);
-
     if (status === 401 && data === "InvalidToken") {
       localStorage.removeItem("AccessToken");
       window.location.href = "/signin";
@@ -59,6 +56,8 @@ client.interceptors.response.use(
         return Promise.reject(error);
       }
     }
+
+    return Promise.reject(error);
   }
 );
 
