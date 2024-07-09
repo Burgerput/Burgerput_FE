@@ -20,7 +20,7 @@ export default function UpdatedValueChecker() {
 
   return (
     <>
-      {diffValue && (
+      {diffValue.length > 0 && (
         <>
           {showOverlay && <div className={styles.overlay} />}
           <section className={styles.section}>
