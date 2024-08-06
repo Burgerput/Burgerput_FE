@@ -3,6 +3,7 @@ import styles from "./Footer.module.css";
 import HowToUse from "./HowToUse";
 import DdayCounter from "./ui/DdayCounter";
 import UpdatedValueChecker from "./UpdatedValueChecker";
+import Socket from "./Socket";
 
 export default function Footer() {
   return (
@@ -11,6 +12,7 @@ export default function Footer() {
         <DdayCounter expiryDate="2024-12-31" />
         <HowToUse />
         <UpdatedValueChecker />
+        <Socket />
       </article>
       <p className={styles.copyright}>
         Copyright 2023. Etart, Frolip All Rights Reserved
