@@ -15,6 +15,17 @@
   align-items: center;
 }
 
+.chat {
+  background-color: var(--navbar-background-color);
+  color: var(--text-basic-color);
+  font-size: 24px;
+  margin-top: 14px;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+}
+
 .copyright {
   position: absolute;
   bottom: 0.5rem;

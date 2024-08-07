@@ -1,6 +1,7 @@
 import React from "react";
-import { createPortal } from "react-dom";
+import styles from "./Modal.module.css";
 import BackDrop from "./BackDrop";
+import { createPortal } from "react-dom";
 
 export default function Modal({ children, onClose }) {
   if (typeof window === "undefined") return null;
@@ -10,9 +11,11 @@ export default function Modal({ children, onClose }) {
   return (
     <>
       {createPortal(
-        <section>
+        <section className={styles.modal}>
           <BackDrop onClose={onClose} />
-          <button onClick={onClose}>닫기</button>
+          <button className={styles.button} onClick={onClose}>
+            닫기
+          </button>
           {children}
         </section>,
         element
