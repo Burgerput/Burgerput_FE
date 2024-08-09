@@ -13,13 +13,18 @@ export default function Footer() {
   const [openModal, setOpenModal] = useState(false);
   const userName = useUserName();
 
+  const onSocketDisconnect = () => {
+    socket.emit("joinAndLeave", { type: "leave", userName });
+    socket.disconnect();
+  };
+
   const handleModalOpen = () => {
     setOpenModal(true);
   };
 
   const handleModalClose = () => {
     setOpenModal(false);
-    socket.disconnect();
+    onSocketDisconnect();
   };
 
   return (

@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ChatWindow.module.css";
-import { useSetUserName, useUserName } from "../store/user";
+import { useSetUserId, useSetUserName, useUserName } from "../store/user";
 import { socket } from "../utils/server";
 import ChatLogs from "./ChatLogs";
+import InputChatMessage from "./InputChatMessage";
 
 export default function ChatWindow() {
   const userName = useUserName();
   const setUserName = useSetUserName();
+  const setUserId = useSetUserId();
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
     const onConnect = () => {
       socket.emit("joinAndLeave", { type: "join", userName });
+      setUserId(socket.id);
     };
 
     const onDisconnect = () => {
@@ -29,9 +32,13 @@ export default function ChatWindow() {
       setLogs((prev) => [...prev, { type: "chat", ...chatData }]);
     });
 
+    if (socket.connected) onConnect();
+
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
+      socket.off("joinAndLeave");
+      socket.off("chat");
     };
   }, []);
 
@@ -39,6 +46,7 @@ export default function ChatWindow() {
     <section className={styles.section}>
       <p>채팅에 참여했습니다! 잠시만 기다려주세요.</p>
       <ChatLogs logs={logs} />
+      <InputChatMessage />
     </section>
   );
 }
