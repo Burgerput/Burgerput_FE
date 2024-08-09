@@ -3,12 +3,14 @@ import styles from "./Footer.module.css";
 import HowToUse from "./HowToUse";
 import DdayCounter from "./ui/DdayCounter";
 import UpdatedValueChecker from "./UpdatedValueChecker";
-import Socket from "./Socket";
 import Modal from "./ui/Modal";
 import InputUserName from "./InputUserName";
+import { useUserName } from "../store/user";
+import ChatWindow from "./ChatWindow";
 
 export default function Footer() {
   const [openModal, setOpenModal] = useState(false);
+  const userName = useUserName();
 
   const handleModalOpen = () => {
     setOpenModal(true);
@@ -28,7 +30,7 @@ export default function Footer() {
         </button>
         {openModal && (
           <Modal onClose={handleModalClose}>
-            <InputUserName />
+            {userName ? <ChatWindow /> : <InputUserName />}
           </Modal>
         )}
       </article>

@@ -1,0 +1,8 @@
+.section {
+  width: 500px;
+  height: 700px;
+  z-index: 999;
+  background-color: var(--navbar-background-color);
+  color: var(--text-basic-color);
+  border-radius: 8px;
+}

@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./InputUserName.module.css";
 import { useForm } from "react-hook-form";
-import { useSetUserName, useUserName } from "../store/user";
+import { useSetUserName } from "../store/user";
+import { socket } from "../utils/server";
 
 export default function InputUserName() {
   const {
@@ -14,6 +15,7 @@ export default function InputUserName() {
 
   const onSubmit = (data) => {
     setUserName(data.userName);
+    socket.connect();
   };
 
   return (
