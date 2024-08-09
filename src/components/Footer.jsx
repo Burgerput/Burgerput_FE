@@ -7,6 +7,7 @@ import Modal from "./ui/Modal";
 import InputUserName from "./InputUserName";
 import { useUserName } from "../store/user";
 import ChatWindow from "./ChatWindow";
+import { socket } from "../utils/server";
 
 export default function Footer() {
   const [openModal, setOpenModal] = useState(false);
@@ -18,7 +19,9 @@ export default function Footer() {
 
   const handleModalClose = () => {
     setOpenModal(false);
+    socket.disconnect();
   };
+
   return (
     <footer className={styles.footer}>
       <article className={styles.tools}>
