@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./message.module.css";
 import { useUserId } from "../../store/user";
 
 export default function ChatMessage({ data }) {
@@ -6,13 +7,17 @@ export default function ChatMessage({ data }) {
   const userId = useUserId();
 
   if (currentUserId === userId) {
-    return <p>{message}</p>;
+    return (
+      <div className={styles.sendedBox}>
+        <p className={styles.sendMessage}>{message}</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <p>{author}</p>
-      <p>{message}</p>
+    <div className={styles.receivedBox}>
+      <p className={styles.author}>{author}</p>
+      <p className={styles.receivedMessage}>{message}</p>
     </div>
   );
 }

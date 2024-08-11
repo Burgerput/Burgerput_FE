@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { socket } from "../utils/server";
 import { useUserName } from "../store/user";
 
-export default function InputChatMessage() {
+export default function InputChatMessage({ disabled }) {
   const [message, setMessage] = useState("");
   const userName = useUserName();
 
@@ -23,8 +23,13 @@ export default function InputChatMessage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={message} onChange={handleChange} />
-      <button>전송</button>
+      <input
+        type="text"
+        value={message}
+        onChange={handleChange}
+        disabled={disabled}
+      />
+      <button disabled={disabled}>전송</button>
     </form>
   );
 }

@@ -44,9 +44,11 @@ export default function ChatWindow() {
 
   return (
     <section className={styles.section}>
-      <p>채팅에 참여했습니다! 잠시만 기다려주세요.</p>
+      {logs.length === 0 && (
+        <p className={styles.desc}>채팅에 참여했습니다! 잠시만 기다려주세요.</p>
+      )}
       <ChatLogs logs={logs} />
-      <InputChatMessage />
+      <InputChatMessage disabled={logs.length === 0} />
     </section>
   );
 }
