@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import styles from "./InputChatMessage.module.css";
 import { socket } from "../utils/server";
 import { useUserName } from "../store/user";
+import { BsSendFill } from "react-icons/bs";
 
 export default function InputChatMessage({ disabled }) {
   const [message, setMessage] = useState("");
@@ -22,14 +24,18 @@ export default function InputChatMessage({ disabled }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
+        className={styles.input}
         type="text"
         value={message}
         onChange={handleChange}
+        placeholder="메세지를 입력해주세요."
         disabled={disabled}
       />
-      <button disabled={disabled}>전송</button>
+      <button className={styles.button} disabled={disabled}>
+        <BsSendFill />
+      </button>
     </form>
   );
 }
