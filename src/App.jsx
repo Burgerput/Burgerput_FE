@@ -5,8 +5,6 @@ import TypeIt from "typeit-react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useDisplay } from "./hooks/useOutletDisplay";
-import { useDateCheck } from "./hooks/useDateCheck";
-import { useEffect } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
