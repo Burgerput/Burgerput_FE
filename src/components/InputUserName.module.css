@@ -1,0 +1,75 @@
+.section {
+  z-index: 999;
+  width: 400px;
+  height: 225px;
+  border: 2px solid var(--screen-background-color);
+  background: var(--navbar-background-color);
+  color: var(--screen-background-color);
+  border-radius: 8px;
+  font-family: "Pretendard";
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.article {
+  flex: 1;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.article p {
+  margin-bottom: 5px;
+}
+
+.span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.form {
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+}
+
+.input {
+  text-align: center;
+  border: 2px dashed var(--screen-background-color);
+  background-color: transparent;
+  outline: none;
+  width: 260px;
+  padding: 10px 2px;
+  border-radius: 8px;
+}
+
+.div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 2px solid var(--screen-background-color);
+}
+
+.div > button:first-child {
+  border-right: 1px solid var(--navbar-background-color);
+}
+
+.button {
+  text-align: center;
+  padding: 8px 0;
+  font-size: 20px;
+  background-color: var(--screen-background-color);
+  color: var(--navbar-background-color);
+  transition: all 250ms ease;
+}
+
+.button:hover {
+  background-color: var(--navbar-background-color);
+  color: var(--screen-background-color);
+}

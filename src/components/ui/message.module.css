@@ -1,0 +1,29 @@
+.infoMessage {
+  text-align: center;
+  font-size: 14px;
+}
+
+.sendedBox {
+  display: flex;
+  justify-content: end;
+}
+
+.sendMessage {
+  background-color: var(--navbar-depth2-color);
+  padding: 6px 8px 6px 10px;
+  border-radius: 6px;
+  max-width: 300px;
+}
+
+.receivedBox {
+  background-color: var(--navbar-depth2-color);
+  width: fit-content;
+  padding: 6px 10px 6px 8px;
+  border-radius: 6px;
+  max-width: 300px;
+}
+
+.author {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
