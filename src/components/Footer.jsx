@@ -14,7 +14,6 @@ export default function Footer() {
   const userName = useUserName();
 
   const onSocketDisconnect = () => {
-    socket.emit("joinAndLeave", { type: "leave", userName });
     socket.disconnect();
   };
 

@@ -13,21 +13,23 @@ export default function InputUserName() {
 
   const setUserName = useSetUserName();
 
-  const onEntrance = (userName) => {
-    fetch("http://localhost:8080/api/entrance", {
+  const onEntrance = async (userName) => {
+    return await fetch(`${import.meta.env.VITE_CHAT_SERVER_URL}/api/entrance`, {
       method: "POST",
-      body: JSON.stringify({ message: userName }),
+      body: JSON.stringify({ userName }),
       headers: {
         "Content-Type": "application/json",
       },
     });
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setUserName(data.userName);
-    onEntrance(data.userName);
+    const res = await onEntrance(data.userName);
 
-    socket.connect();
+    if (res.status === 200) {
+      socket.connect();
+    }
   };
 
   return (

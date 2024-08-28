@@ -13,7 +13,7 @@ export default function ChatWindow() {
 
   useEffect(() => {
     const onConnect = () => {
-      socket.emit("joinAndLeave", { type: "join", userName });
+      socket.emit("join", userName);
       setUserId(socket.id);
     };
 
@@ -21,12 +21,15 @@ export default function ChatWindow() {
       setUserName("");
     };
 
+    const handleSetInfoLogs = (data) => {
+      setLogs((prev) => [...prev, { type: data.type, message: data.message }]);
+    };
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 
-    socket.on("joinAndLeave", (data) => {
-      setLogs((prev) => [...prev, { type: data.type, message: data.message }]);
-    });
+    socket.on("join", (data) => handleSetInfoLogs(data));
+    socket.on("leave", (data) => handleSetInfoLogs(data));
 
     socket.on("chat", (chatData) => {
       setLogs((prev) => [...prev, { type: "chat", ...chatData }]);
@@ -37,7 +40,8 @@ export default function ChatWindow() {
     return () => {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
-      socket.off("joinAndLeave");
+      socket.off("join");
+      socket.off("leave");
       socket.off("chat");
     };
   }, []);
