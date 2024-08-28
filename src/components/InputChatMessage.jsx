@@ -31,6 +31,7 @@ export default function InputChatMessage({ disabled }) {
         value={message}
         onChange={handleChange}
         placeholder="메세지를 입력해주세요."
+        autoFocus
         disabled={disabled}
       />
       <button className={styles.button} disabled={disabled}>

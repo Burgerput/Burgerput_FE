@@ -13,8 +13,20 @@ export default function InputUserName() {
 
   const setUserName = useSetUserName();
 
+  const onEntrance = (userName) => {
+    fetch("http://localhost:8080/api/entrance", {
+      method: "POST",
+      body: JSON.stringify({ message: userName }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   const onSubmit = (data) => {
     setUserName(data.userName);
+    onEntrance(data.userName);
+
     socket.connect();
   };
 
