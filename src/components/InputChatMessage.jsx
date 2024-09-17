@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./InputChatMessage.module.css";
 import { socket } from "../utils/server";
-import { useUserName } from "../store/user";
 import { BsSendFill } from "react-icons/bs";
+import { useUserName } from "../entities/user";
 
 export default function InputChatMessage({ disabled }) {
   const [message, setMessage] = useState("");

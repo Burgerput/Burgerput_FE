@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./message.module.css";
-import { useUserId } from "../../store/user";
+import { useUserId } from "../../entities/user";
 
 export default function ChatMessage({ data }) {
   const { author, currentUserId, message } = data;

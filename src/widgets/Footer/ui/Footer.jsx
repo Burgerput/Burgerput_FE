@@ -1,30 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./Footer.module.css";
-import HowToUse from "./HowToUse";
-import DdayCounter from "./ui/DdayCounter";
-import UpdatedValueChecker from "./UpdatedValueChecker";
-import Modal from "./ui/Modal";
-import InputUserName from "./InputUserName";
-import { useUserName } from "../store/user";
-import ChatWindow from "./ChatWindow";
-import { socket } from "../utils/server";
+import InputUserName from "../../../components/InputUserName";
+import ChatWindow from "../../../components/ChatWindow";
+import { socket } from "../../../utils/server";
+import { UpdatedValueChecker } from "../../../features/updated-value-check";
+import { DdayCounter } from "../../../features/dday-counter";
+import { HowToUse } from "../../../features/how-to-use";
+import { useUserName } from "../../../entities/user";
+import { Modal, useModal } from "../../../shared/ui/Modal";
 
 export default function Footer() {
-  const [openModal, setOpenModal] = useState(false);
   const userName = useUserName();
 
   const onSocketDisconnect = () => {
     socket.disconnect();
   };
 
-  const handleModalOpen = () => {
-    setOpenModal(true);
-  };
-
-  const handleModalClose = () => {
-    setOpenModal(false);
-    onSocketDisconnect();
-  };
+  const { openModal, handleModalOpen, handleModalClose } =
+    useModal(onSocketDisconnect);
 
   return (
     <footer className={styles.footer}>

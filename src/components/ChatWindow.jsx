@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ChatWindow.module.css";
-import { useSetUserId, useSetUserName, useUserName } from "../store/user";
 import { socket } from "../utils/server";
 import ChatLogs from "./ChatLogs";
 import InputChatMessage from "./InputChatMessage";
+import { useSetUserId, useSetUserName, useUserName } from "../entities/user";
 
 export default function ChatWindow() {
   const userName = useUserName();

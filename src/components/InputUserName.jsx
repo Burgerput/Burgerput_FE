@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./InputUserName.module.css";
 import { useForm } from "react-hook-form";
-import { useSetUserName } from "../store/user";
 import { socket } from "../utils/server";
+import { useSetUserName } from "../entities/user";
 
 export default function InputUserName() {
   const {

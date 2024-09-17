@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
-import BackDrop from "./BackDrop";
+import BackDrop from "../BackDrop/BackDrop";
 import { createPortal } from "react-dom";
 
 export default function Modal({ children, onClose }) {

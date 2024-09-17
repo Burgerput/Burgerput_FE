@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getDiffValue } from "../api/Products";
 import styles from "./UpdatedValueChecker.module.css";
-import EditItem from "./ui/diffValues/EditItem";
-import AddedOrRemovedItem from "./ui/diffValues/AddedOrRemovedItem";
+import EditItem from "../EditItem/EditItem";
+import AddedOrRemovedItem from "../AddedOrRemovedItem/AddedOrRemovedItem";
 import { useQuery } from "@tanstack/react-query";
+import { getDiffValue } from "../../model";
 
 export default function UpdatedValueChecker() {
   const [showOverlay, setShowOverlay] = useState(true);
