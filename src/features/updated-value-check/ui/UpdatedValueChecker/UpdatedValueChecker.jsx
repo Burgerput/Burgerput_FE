@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./UpdatedValueChecker.module.css";
+import styles from "../../styles.module.css";
 import EditItem from "../EditItem/EditItem";
 import AddedOrRemovedItem from "../AddedOrRemovedItem/AddedOrRemovedItem";
 import { useQuery } from "@tanstack/react-query";

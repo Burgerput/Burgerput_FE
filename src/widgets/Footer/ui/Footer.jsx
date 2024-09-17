@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Footer.module.css";
+import styles from "../styles.module.css";
 import InputUserName from "../../../components/InputUserName";
 import ChatWindow from "../../../components/ChatWindow";
 import { socket } from "../../../utils/server";

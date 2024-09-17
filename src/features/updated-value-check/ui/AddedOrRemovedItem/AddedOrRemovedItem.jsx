@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./AddedOrRemovedItem.module.css";
+import styles from "../../styles.module.css";
 
 export default function AddedOrRemovedItem({ item, type }) {
   const { name, min, max } = item;

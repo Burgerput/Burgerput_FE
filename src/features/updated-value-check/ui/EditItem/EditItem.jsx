@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./EditItem.module.css";
+import styles from "../../styles.module.css";
 
 function ChangedValueComponent({ type, list }) {
   const [prev, cur] = list;

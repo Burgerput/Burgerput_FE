@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./HowToUse.module.css";
+import styles from "../../styles.module.css";
 
 const TIPS = [
   "Admins 탭에서 사용하고 싶은 기기 및 식품을 선택할 수 있습니다!",

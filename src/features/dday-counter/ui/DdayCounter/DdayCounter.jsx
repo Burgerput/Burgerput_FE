@@ -1,4 +1,4 @@
-import styles from "./DdayCounter.module.css";
+import styles from "../../styles.module.css";
 
 export default function DdayCounter({ expiryDate }) {
   const now = new Date();

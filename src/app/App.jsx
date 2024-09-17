@@ -2,9 +2,9 @@ import { Outlet } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import styles from "./App.module.css";
 import TypeIt from "typeit-react";
-import Navbar from "../widgets/Navbar/Navbar";
-import Footer from "../widgets/Footer/ui/Footer";
 import { useDisplay } from "../hooks/useOutletDisplay";
+import { Navbar } from "../widgets/Navbar";
+import { Footer } from "../widgets/Footer";
 
 const queryClient = new QueryClient({
   defaultOptions: {

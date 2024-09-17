@@ -43,3 +43,26 @@
 .list h3 {
   margin-bottom: 8px;
 }
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail__desc {
+  font-size: 15px;
+}
+
+.detail__desc span {
+  font-weight: bold;
+}
+
+.name {
+  font-size: 15px;
+}
+
+.temp {
+  font-size: 12px;
+  padding-left: 1px;
+}
