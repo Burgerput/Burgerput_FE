@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import CustomProduct from "../components/CustomProduct";
-import styles from "./CustomPage.module.css";
-import Banner from "./../components/Banner";
-import Button from "../components/Button";
-import { useGoHome } from "../hooks/useNavigator";
-import { useMachines } from "../hooks/products";
-import { useSubmitActions, useSubmitStates } from "../store/uiState";
-import { useResetCustomProducts } from "../store/products";
-import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
+import styles from "../styles.module.css";
+import { CustomProduct } from "../../../widgets/custom-product";
+import {
+  useMachines,
+  useResetCustomProducts,
+} from "../../../entities/products";
+import { useSubmitStates, useSubmitActions } from "../../../entities/ui-state";
+import { Button } from "../../../shared/ui/Button";
+import { Banner } from "../../../shared/ui/Banner";
+import { BarSpinner } from "../../../shared/ui/LoadingSpinner";
+import { useNavigateToMain } from "../../../shared/lib/hooks";
 
 export default function CustomMachines() {
-  const { handleClick } = useGoHome();
+  const { handleClick } = useNavigateToMain();
   const { success } = useSubmitStates();
   const { resetState } = useSubmitActions();
 
@@ -40,7 +42,7 @@ export default function CustomMachines() {
           {success && <Banner text={"기기 선택이 완료되었습니다."} />}
           <div className={styles.products}>
             {error && <p>{error}</p>}
-            {isLoading && <LoadingBarSpinner />}
+            {isLoading && <BarSpinner />}
             {machines &&
               machines.map((machine) => (
                 <div key={machine.id}>

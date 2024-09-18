@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Button.module.css";
+import styles from "../styles.module.css";
 
 export default function Button({ text, handleFunction, type, form, disabled }) {
   return (

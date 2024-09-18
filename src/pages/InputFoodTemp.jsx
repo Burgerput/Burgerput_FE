@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
-import Banner from "../components/Banner";
 import ManagerList from "../components/ManagerList";
-import Button from "../components/Button";
+import Button from "../shared/ui/Button/ui/Button";
 import styles from "./InputTemp.module.css";
 import Modal from "../components/Modal";
 import { useGoHome } from "../hooks/useNavigator";
 import { useCustomFoods, useCustomProducts } from "../hooks/customProducts";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import InputTempForm from "../components/InputTempForm";
-import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
-import PacmanSpinner from "../components/ui/PacmanSpinner";
+import { Banner } from "../shared/ui/Banner";
+import { BarSpinner, PacmanSpinner } from "../shared/ui/LoadingSpinner";
 
 export default function InputFoodTemp() {
   const { handleClick } = useGoHome();
@@ -54,7 +53,7 @@ export default function InputFoodTemp() {
           component={"입력에 실패했습니다. 다시 시도해주세요."}
         />
       )}
-      {isLoading && <LoadingBarSpinner />}
+      {isLoading && <BarSpinner />}
       {data?.customFood && (
         <InputTempForm onSubmit={onSubmit} products={data.customFood} />
       )}

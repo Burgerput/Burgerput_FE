@@ -1,6 +1,6 @@
 import React from "react";
 import { PacmanLoader } from "react-spinners";
-import styles from "./PacmanSpinner.module.css";
+import styles from "../styles.module.css";
 
 export default function PacmanSpinner() {
   return (

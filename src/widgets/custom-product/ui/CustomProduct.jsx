@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styles from "./CustomProducts.module.css";
-import { useCustomProductsActions } from "../store/products";
+import styles from "../styles.module.css";
+import { useCustomProductsActions } from "../../../entities/products/store";
 
 export default function CustomProduct({ value, checkedIt }) {
   const { name, min, max, id } = value;
@@ -23,7 +23,7 @@ export default function CustomProduct({ value, checkedIt }) {
     <div className={styles.product}>
       <input
         className={styles.check}
-        type='checkbox'
+        type="checkbox"
         id={id}
         checked={checked}
         onChange={handleChange}

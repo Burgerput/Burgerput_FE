@@ -7,7 +7,8 @@ import { UpdatedValueChecker } from "../../../features/updated-value-check";
 import { DdayCounter } from "../../../features/dday-counter";
 import { HowToUse } from "../../../features/how-to-use";
 import { useUserName } from "../../../entities/user";
-import { Modal, useModal } from "../../../shared/ui/Modal";
+import { Modal } from "../../../shared/ui/Modal";
+import { useModal } from "../../../shared/lib/hooks";
 
 export default function Footer() {
   const userName = useUserName();

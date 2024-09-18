@@ -1,6 +1,6 @@
 import React from "react";
 import { BarLoader } from "react-spinners";
-import styles from "./LoadingSpinner.module.css";
+import styles from "../styles.module.css";
 
 export default function LoadingBarSpinner() {
   return (

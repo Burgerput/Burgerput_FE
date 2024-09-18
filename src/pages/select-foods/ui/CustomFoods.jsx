@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import styles from "./CustomPage.module.css";
-import CustomProduct from "../components/CustomProduct";
-import Banner from "./../components/Banner";
-import Button from "../components/Button";
-import { useGoHome } from "../hooks/useNavigator";
-import { useFoods } from "../hooks/products";
-import { useSubmitActions, useSubmitStates } from "../store/uiState";
-import { useResetCustomProducts } from "../store/products";
+import styles from "../styles.module.css";
+import { CustomProduct } from "../../../widgets/custom-product";
+import { useFoods, useResetCustomProducts } from "../../../entities/products";
+import { useSubmitActions, useSubmitStates } from "../../../entities/ui-state";
+import { Button } from "../../../shared/ui/Button";
+import { Banner } from "../../../shared/ui/Banner";
+import { BarSpinner } from "../../../shared/ui/LoadingSpinner";
+import { useNavigateToMain } from "../../../shared/lib/hooks";
 
 export default function CustomFoods() {
-  const { handleClick } = useGoHome();
+  const { handleClick } = useNavigateToMain();
   const { success } = useSubmitStates();
   const { resetState } = useSubmitActions();
 
@@ -39,7 +39,7 @@ export default function CustomFoods() {
           {success && <Banner text={"식품 선택이 완료되었습니다."} />}
           <div className={styles.products}>
             {error && <p>{error}</p>}
-            {isLoading && <p>Loading...</p>}
+            {isLoading && <BarSpinner />}
             {foods &&
               foods.map((food) => (
                 <div key={food.id}>

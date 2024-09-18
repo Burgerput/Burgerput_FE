@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
 import ManagerList from "../components/ManagerList";
-import Banner from "../components/Banner";
 import Modal from "../components/Modal";
 import {
   useRandomMachineTemp,
@@ -10,8 +9,8 @@ import {
 } from "../hooks/RandomTemp";
 import RandomTempForm from "../components/RandomTempForm";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
-import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
-import PacmanSpinner from "../components/ui/PacmanSpinner";
+import { Banner } from "../shared/ui/Banner";
+import { BarSpinner, PacmanSpinner } from "../shared/ui/LoadingSpinner";
 
 export default function RandomMachineTemp() {
   const { submitCustomTemp, data, isLoading, setCustomTemp } =
@@ -54,7 +53,7 @@ export default function RandomMachineTemp() {
           component={"입력에 실패했습니다. 다시 시도해주세요."}
         />
       )}
-      {isLoading && <LoadingBarSpinner />}
+      {isLoading && <BarSpinner />}
       {data?.customCheatMachine && (
         <RandomTempForm
           products={data.customCheatMachine}

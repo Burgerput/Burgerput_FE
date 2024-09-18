@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 import Main from "./pages/Main";
 import AdminProfile from "./pages/AdminProfile";
-import CustomMachines from "./pages/CustomMachines";
-import CustomFoods from "./pages/CustomFoods";
+import { CustomMachines } from "./pages/select-machines";
+import { CustomFoods } from "./pages/select-foods";
 import EditManagers from "./pages/EditManagers";
 import InputMachineTemp from "./pages/InputMachineTemp";
 import InputFoodTemp from "./pages/InputFoodTemp";

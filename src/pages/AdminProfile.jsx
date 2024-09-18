@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styles from "./AdminProfile.module.css";
 import { useForm } from "react-hook-form";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
-import Banner from "../components/Banner";
-import Button from "../components/Button";
+import Button from "../shared/ui/Button/ui/Button";
 import { useGoHome } from "../hooks/useNavigator";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import { useAdminProfile } from "../hooks/Admins";
+import { Banner } from "../shared/ui/Banner";
 
 export default function AdminProfile() {
   const [hide, setHide] = useState(true);

@@ -5,7 +5,7 @@ import { AiOutlineEnter } from "react-icons/ai";
 import { useGoHome } from "../hooks/useNavigator";
 import { useState } from "react";
 import { useEditManagers } from "../hooks/Admins";
-import LoadingBarSpinner from "../components/ui/LoadingBarSpinner";
+import { BarSpinner } from "../shared/ui/LoadingSpinner";
 
 export default function EditManagers() {
   const [manager, setManager] = useState("");
@@ -42,7 +42,7 @@ export default function EditManagers() {
       </div>
       <ul className={styles.box}>
         {error && <div>{error}</div>}
-        {isLoading && <LoadingBarSpinner />}
+        {isLoading && <BarSpinner />}
         {initialManagers &&
           initialManagers.map(({ id, mgrname }) => (
             <li className={styles.card} key={id}>
