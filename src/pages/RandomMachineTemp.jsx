@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
-import ManagerList from "../components/ManagerList";
 import Modal from "../components/Modal";
 import {
   useRandomMachineTemp,
@@ -9,6 +8,7 @@ import {
 } from "../hooks/RandomTemp";
 import RandomTempForm from "../components/RandomTempForm";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
+import { SelectManager } from "../features/select-manager";
 import { Banner } from "../shared/ui/Banner";
 import { BarSpinner, PacmanSpinner } from "../shared/ui/LoadingSpinner";
 
@@ -36,7 +36,7 @@ export default function RandomMachineTemp() {
       <div className={styles.title}>
         <div className={styles.text}>기기 범위</div>
         {data?.mgrList && (
-          <ManagerList className={styles.mgrList} mgrList={data.mgrList} />
+          <SelectManager className={styles.mgrList} mgrList={data.mgrList} />
         )}
       </div>
       {warning && <Banner text={warning} />}

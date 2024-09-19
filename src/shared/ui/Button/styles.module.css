@@ -1,20 +1,28 @@
-.button {
+.buttonCommon {
   background: var(--navbar-background-color);
   text-align: center;
   width: 100%;
-  color: var(--text-basic-color);
-  font-size: xx-large;
   padding: 0.7rem 0;
+  color: var(--text-basic-color);
   transition: all 150ms ease-in;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.button:nth-child(1) {
+.button {
+  font-size: xx-large;
+}
+
+.smallButton {
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+}
+
+.buttonCommon:nth-child(1) {
   border-right: 2px solid white;
 }
 
-.button:hover {
+.buttonCommon:hover {
   background: var(--main-background-color);
   color: var(--navbar-background-color);
-  font-weight: bold;
 }

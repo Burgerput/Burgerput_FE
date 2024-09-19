@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./RandomTemp.module.css";
-import ManagerList from "../components/ManagerList";
 import Modal from "../components/Modal";
 import {
   useRandomFoodTemp,
@@ -9,6 +8,7 @@ import {
 } from "../hooks/RandomTemp";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import RandomTempForm from "../components/RandomTempForm";
+import { SelectManager } from "../features/select-manager";
 import { BarSpinner, PacmanSpinner } from "../shared/ui/LoadingSpinner";
 import { Banner } from "../shared/ui/Banner";
 
@@ -37,7 +37,7 @@ export default function RandomFoodTemp() {
       <div className={styles.title}>
         <div className={styles.text}>식품 범위</div>
         {data?.mgrList && (
-          <ManagerList className={styles.mgrList} mgrList={data.mgrList} />
+          <SelectManager className={styles.mgrList} mgrList={data.mgrList} />
         )}
       </div>
       {warning && <Banner text={warning} />}

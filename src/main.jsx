@@ -9,16 +9,14 @@ import {
 } from "react-router-dom";
 import Main from "./pages/Main";
 import AdminProfile from "./pages/AdminProfile";
-import { CustomMachines } from "./pages/select-machines";
-import { CustomFoods } from "./pages/select-foods";
 import EditManagers from "./pages/EditManagers";
-import InputMachineTemp from "./pages/InputMachineTemp";
-import InputFoodTemp from "./pages/InputFoodTemp";
 import NotFound from "./pages/NotFound";
 import CheatModeGuide from "./pages/CheatModeGuide";
 import RandomMachineTemp from "./pages/RandomMachineTemp";
 import RandomFoodTemp from "./pages/RandomFoodTemp";
 import SignIn from "./pages/SignIn";
+import { SelectFoods, SelectMachines } from "./pages/select-products";
+import { InputFoodTemp, InputMachineTemp } from "./pages/input-temp";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");
@@ -41,10 +39,10 @@ const router = createBrowserRouter([
       { path: "address", element: <AdminProfile />, loader: checkAuth },
       {
         path: "select/machines",
-        element: <CustomMachines />,
+        element: <SelectMachines />,
         loader: checkAuth,
       },
-      { path: "select/foods", element: <CustomFoods />, loader: checkAuth },
+      { path: "select/foods", element: <SelectFoods />, loader: checkAuth },
       { path: "select/managers", element: <EditManagers />, loader: checkAuth },
       {
         path: "zenput/machines",

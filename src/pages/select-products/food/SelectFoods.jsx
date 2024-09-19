@@ -2,24 +2,24 @@ import React, { useEffect } from "react";
 import styles from "../styles.module.css";
 import { CustomProduct } from "../../../widgets/custom-product";
 import {
-  useMachines,
+  useFoods,
   useResetCustomProducts,
-} from "../../../entities/products";
-import { useSubmitStates, useSubmitActions } from "../../../entities/ui-state";
+} from "../../../entities/select-products";
+import { useSubmitActions, useSubmitStates } from "../../../entities/ui-state";
 import { Button } from "../../../shared/ui/Button";
 import { Banner } from "../../../shared/ui/Banner";
 import { BarSpinner } from "../../../shared/ui/LoadingSpinner";
 import { useNavigateToMain } from "../../../shared/lib/hooks";
 
-export default function CustomMachines() {
+export default function SelectFoods() {
   const { handleClick } = useNavigateToMain();
   const { success } = useSubmitStates();
   const { resetState } = useSubmitActions();
 
   const {
-    productsQuery: { isLoading, error, data: machines },
+    productsQuery: { isLoading, error, data: foods },
     handleSubmitProducts,
-  } = useMachines();
+  } = useFoods();
 
   const resetProducts = useResetCustomProducts();
 
@@ -32,31 +32,31 @@ export default function CustomMachines() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.title}>기기 선택</div>
+      <div className={styles.title}>식품 선택</div>
       <div className={styles.wrapper}>
         <form
-          id="customMachine"
+          id="customFoods"
           className={styles.form}
           onSubmit={handleSubmitProducts}
         >
-          {success && <Banner text={"기기 선택이 완료되었습니다."} />}
+          {success && <Banner text={"식품 선택이 완료되었습니다."} />}
           <div className={styles.products}>
             {error && <p>{error}</p>}
             {isLoading && <BarSpinner />}
-            {machines &&
-              machines.map((machine) => (
-                <div key={machine.id}>
+            {foods &&
+              foods.map((food) => (
+                <div key={food.id}>
                   <CustomProduct
-                    value={machine}
-                    checkedIt={machine.isChecked === "true" ? true : false}
+                    value={food}
+                    checkedIt={food.isChecked === "true" ? true : false}
                   />
                 </div>
               ))}
           </div>
         </form>
         <div className={styles.buttons}>
-          <Button text={"저장"} type={"submit"} form={"customMachine"} />
-          <Button text={"취소"} handleFunction={handleClick} />
+          <Button text={"저장"} form={"customFoods"} />
+          <Button text={"취소"} onClick={handleClick} />
         </div>
       </div>
     </section>

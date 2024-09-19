@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles.module.css";
-import { useCustomProductsActions } from "../../../entities/products/store";
+import { useCustomProductsActions } from "../../../entities/select-products/model/store";
 
 export default function CustomProduct({ value, checkedIt }) {
   const { name, min, max, id } = value;

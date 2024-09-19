@@ -9,7 +9,7 @@ import {
 } from "../api/Products";
 import { useSubmitActions } from "../store/uiState";
 import { useState } from "react";
-import { useManagerState } from "../store/manager";
+import { useManagerState } from "../entities/manager/model/store";
 
 function dataMutation(
   queryKey,

@@ -1,43 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import {
-  getCustomMachines,
-  submitMachines,
-  getCustomFoods,
-  submitFoods,
-} from "../api/Products";
 import { useState } from "react";
-import { useSubmitActions } from "../store/uiState";
-import { useManagerState } from "../store/manager";
 import { useLocation } from "react-router-dom";
-
-function dataMutation(queryKey, getProductFunc, submitFunc, productKey) {
-  const productsQuery = useQuery([queryKey], getProductFunc, {
-    staleTime: Infinity,
-    cacheTime: Infinity,
-  });
-
-  const setProductsTemp = ({ manager, products, location }) =>
-    submitFunc({
-      mgrname: manager?.label,
-      [productKey]: products,
-      time: location?.state,
-    });
-
-  return { productsQuery, setProductsTemp };
-}
-
-export function useCustomMachines() {
-  return dataMutation(
-    "customMachines",
-    getCustomMachines,
-    submitMachines,
-    "customMachine"
-  );
-}
-
-export function useCustomFoods() {
-  return dataMutation("customFoods", getCustomFoods, submitFoods, "customFood");
-}
+import { useSubmitActions } from "../../ui-state";
+import { useManagerState } from "../../manager";
 
 export function useCustomProducts({ setProductsTemp }) {
   // submit data
@@ -49,7 +13,7 @@ export function useCustomProducts({ setProductsTemp }) {
   const { handleWarning, setLoading, setResult } = useSubmitActions();
 
   const onSubmit = (formData) => {
-    if (manager === null || manager.length < 0) {
+    if (manager === null || manager.length === 0) {
       handleWarning();
       return;
     }
@@ -60,6 +24,7 @@ export function useCustomProducts({ setProductsTemp }) {
 
     // 제출 후 에러 발생시 사용될 데이터 저장.
     setSubmissionData(submissionPayload);
+
     setLoading(true);
 
     setProductsTemp(submissionPayload)

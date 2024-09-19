@@ -1,2 +1,2 @@
-export { useSubmitStates } from "./store";
-export { useSubmitActions } from "./store";
+export { useSubmitStates } from "./model/store";
+export { useSubmitActions } from "./model/store";

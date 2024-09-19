@@ -4,9 +4,9 @@ import {
   getAllMachines,
   setCustomFoods,
   setCustomMachines,
-} from "../../api/Products";
+} from "../../../api/Products";
 import { useCustomProducts } from "./store";
-import { useSubmitActions } from "../ui-state";
+import { useSubmitActions } from "../../ui-state";
 
 function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
   const queryClient = useQueryClient();

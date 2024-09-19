@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./InputTemp.module.css";
+import styles from "../styles.module.css";
 
 export default function InputTemp({ product, register, setValue, idx }) {
   const [disabled, setDisabled] = useState(false);

@@ -1,10 +1,10 @@
 import React from "react";
 import CreatableSelect from "react-select/creatable";
-import styles from "./ManagerList.module.css";
-import useCustomStyles from "../hooks/managerList";
-import { useManagerState, useSetManager } from "../store/manager";
+import styles from "../styles.module.css";
+import useCustomStyles from "../model/style";
+import { useManagerState, useSetManager } from "../../../entities/manager";
 
-export default function ManagerList({ mgrList }) {
+export default function SelectManager({ mgrList }) {
   const manager = useManagerState();
   const setManager = useSetManager();
 
