@@ -1,7 +1,7 @@
-import Slider from "rc-slider";
 import React, { useCallback, useRef, useState } from "react";
+import styles from "../styles.module.css";
+import Slider from "rc-slider";
 import { Controller, useWatch } from "react-hook-form";
-import styles from "./RandomTemp.module.css";
 import "rc-slider/assets/index.css";
 
 function RandomTemp({ idx, product, control, setValue }) {

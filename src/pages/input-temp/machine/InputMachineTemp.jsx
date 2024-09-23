@@ -6,19 +6,19 @@ import { ErrorAlert, SuccessAlert } from "../../../features/alert/";
 import {
   useCustomMachines,
   useCustomProducts,
-} from "../../../entities/custom-products";
+} from "../../../entities/custom-products/input-temp";
 import { useSubmitActions, useSubmitStates } from "../../../entities/ui-state";
+import { useModalWithTemp, useNavigateToMain } from "../../../shared/lib/hooks";
 import { Modal } from "../../../shared/ui/Modal";
 import { Banner } from "../../../shared/ui/Banner";
 import { Button } from "../../../shared/ui/Button";
 import { BarSpinner, PacmanSpinner } from "../../../shared/ui/LoadingSpinner";
-import { useNavigateToMain } from "../../../shared/lib/hooks";
 
 export default function InputMachineTemp() {
   const { handleClick } = useNavigateToMain();
 
   const { warning, loading, result } = useSubmitStates();
-  const { resetState, setResult } = useSubmitActions();
+  const { resetState } = useSubmitActions();
 
   const {
     productsQuery: { isLoading, error, data },
@@ -29,14 +29,7 @@ export default function InputMachineTemp() {
     setProductsTemp,
   });
 
-  const handleModalClose = () => {
-    setResult(false);
-  };
-
-  const handleRetry = () => {
-    handleRetrySubmit();
-    setResult(false);
-  };
+  const { handleModalClose, handleRetry } = useModalWithTemp(handleRetrySubmit);
 
   useEffect(() => {
     return () => {

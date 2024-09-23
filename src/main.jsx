@@ -12,11 +12,10 @@ import AdminProfile from "./pages/AdminProfile";
 import EditManagers from "./pages/EditManagers";
 import NotFound from "./pages/NotFound";
 import CheatModeGuide from "./pages/CheatModeGuide";
-import RandomMachineTemp from "./pages/RandomMachineTemp";
-import RandomFoodTemp from "./pages/RandomFoodTemp";
 import SignIn from "./pages/SignIn";
 import { SelectFoods, SelectMachines } from "./pages/select-products";
 import { InputFoodTemp, InputMachineTemp } from "./pages/input-temp";
+import { RandomFoodTemp, RandomMachineTemp } from "./pages/random-temp";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");

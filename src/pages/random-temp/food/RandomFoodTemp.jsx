@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import styles from "./RandomTemp.module.css";
-import Modal from "../components/Modal";
+import styles from "../styles.module.css";
+import { SelectManager } from "../../../features/select-manager";
+import { RandomTempForm } from "../../../widgets/random-temp-form";
+import { ErrorAlert, SuccessAlert } from "../../../features/alert";
 import {
   useRandomFoodTemp,
   useSaveRandomRange,
   useSubmitRandomRange,
-} from "../hooks/RandomTemp";
-import { useSubmitActions, useSubmitStates } from "../store/uiState";
-import RandomTempForm from "../components/RandomTempForm";
-import { SelectManager } from "../features/select-manager";
-import { BarSpinner, PacmanSpinner } from "../shared/ui/LoadingSpinner";
-import { Banner } from "../shared/ui/Banner";
+} from "../../../entities/custom-products/random-temp";
+import { useSubmitActions, useSubmitStates } from "../../../entities/ui-state";
+import { useModalWithTemp } from "../../../shared/lib/hooks";
+import { Modal } from "../../../shared/ui/Modal";
+import { Banner } from "../../../shared/ui/Banner";
+import { BarSpinner, PacmanSpinner } from "../../../shared/ui/LoadingSpinner";
 
 export default function RandomFoodTemp() {
   const { submitCustomTemp, data, isLoading, setCustomTemp } =
@@ -23,8 +25,9 @@ export default function RandomFoodTemp() {
   const { onSaveRandomRange } = useSaveRandomRange({ setCustomTemp });
 
   const { loading, warning, success, result } = useSubmitStates();
-
   const { resetState } = useSubmitActions();
+
+  const { handleModalClose, handleRetry } = useModalWithTemp(handleRetrySubmit);
 
   useEffect(() => {
     return () => {
@@ -43,16 +46,18 @@ export default function RandomFoodTemp() {
       {warning && <Banner text={warning} />}
       {success && <Banner text={"지정한 범위를 저장했습니다."} />}
       {loading && <PacmanSpinner />}
-      {result && result.result === "true" && (
-        <Modal title={"제출"} component={"값을 정상적으로 제출했습니다."} />
+      {result.result === "true" && (
+        <Modal onClose={handleModalClose}>
+          <SuccessAlert handleClose={handleModalClose} />
+        </Modal>
       )}
-      {result && result === "error" && (
-        <Modal
-          title={"에러 발생"}
-          error={true}
-          submit={handleRetrySubmit}
-          component={"입력에 실패했습니다. 다시 시도해주세요."}
-        />
+      {result.result === "error" && (
+        <Modal onClose={handleModalClose}>
+          <ErrorAlert
+            handleRetry={handleRetry}
+            handleClose={handleModalClose}
+          />
+        </Modal>
       )}
       {isLoading && <BarSpinner />}
       {data?.customCheatFood && (

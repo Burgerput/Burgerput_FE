@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSubmitActions } from "../../ui-state";
-import { useManagerState } from "../../manager";
+import { useSubmitActions } from "../../../ui-state";
+import { useManagerState } from "../../../manager";
 
 export function useCustomProducts({ setProductsTemp }) {
   // submit data
