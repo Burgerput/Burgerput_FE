@@ -1,16 +1,13 @@
-import styles from "./EditManagers.module.css";
-import { PiTrashBold } from "react-icons/pi";
-import { RiArrowGoBackFill } from "react-icons/ri";
-import { AiOutlineEnter } from "react-icons/ai";
-import { useGoHome } from "../hooks/useNavigator";
 import { useState } from "react";
-import { useEditManagers } from "../hooks/Admins";
-import { BarSpinner } from "../shared/ui/LoadingSpinner";
+import styles from "./styles.module.css";
+import { PiTrashBold } from "react-icons/pi";
+import { AiOutlineEnter } from "react-icons/ai";
+import { useEditManagers } from "../../entities/manager";
+import { BarSpinner } from "../../shared/ui/LoadingSpinner";
 
 export default function EditManagers() {
   const [manager, setManager] = useState("");
 
-  const { handleClick } = useGoHome();
   const {
     managersQuery: { isLoading, error, data: initialManagers },
     addMgr,
@@ -33,20 +30,14 @@ export default function EditManagers() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.header}>
-        <div className={styles.title}>관리자 목록 수정</div>
-        <RiArrowGoBackFill
-          className={styles.header__button}
-          onClick={handleClick}
-        />
-      </div>
+      <header className={styles.title}>관리자 목록 수정</header>
       <ul className={styles.box}>
-        {error && <div>{error}</div>}
+        {error && <p>{error}</p>}
         {isLoading && <BarSpinner />}
         {initialManagers &&
           initialManagers.map(({ id, mgrname }) => (
             <li className={styles.card} key={id}>
-              <span className={styles.card__name}>{mgrname}</span>
+              <p className={styles.card__name}>{mgrname}</p>
               <button
                 onClick={() => {
                   handleDelete(id, mgrname);

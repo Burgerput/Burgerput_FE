@@ -9,13 +9,16 @@ import {
 } from "react-router-dom";
 import Main from "./pages/Main";
 import AdminProfile from "./pages/AdminProfile";
-import EditManagers from "./pages/EditManagers";
 import NotFound from "./pages/NotFound";
-import CheatModeGuide from "./pages/CheatModeGuide";
 import SignIn from "./pages/SignIn";
 import { SelectFoods, SelectMachines } from "./pages/select-products";
 import { InputFoodTemp, InputMachineTemp } from "./pages/input-temp";
-import { RandomFoodTemp, RandomMachineTemp } from "./pages/random-temp";
+import {
+  RandomFoodTemp,
+  RandomMachineTemp,
+  RandomTempGuide,
+} from "./pages/random-temp";
+import { EditManagers } from "./pages/edit-managers";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");
@@ -49,13 +52,21 @@ const router = createBrowserRouter([
         loader: checkAuth,
       },
       { path: "zenput/foods", element: <InputFoodTemp />, loader: checkAuth },
-      { path: "cheat/help", element: <CheatModeGuide />, loader: checkAuth },
       {
-        path: "cheat/machine",
+        path: "zenput/random/guide",
+        element: <RandomTempGuide />,
+        loader: checkAuth,
+      },
+      {
+        path: "zenput/random/machine",
         element: <RandomMachineTemp />,
         loader: checkAuth,
       },
-      { path: "cheat/food", element: <RandomFoodTemp />, loader: checkAuth },
+      {
+        path: "zenput/random/food",
+        element: <RandomFoodTemp />,
+        loader: checkAuth,
+      },
     ],
   },
   {

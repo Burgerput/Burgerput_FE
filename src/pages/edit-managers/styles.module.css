@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.header {
+.title {
   display: flex;
   justify-content: center;
   position: sticky;
@@ -20,16 +20,6 @@
   margin-bottom: 1rem;
   background-color: var(--navbar-background-color);
   color: var(--text-basic-color);
-}
-
-.header__button {
-  position: absolute;
-  right: 20px;
-  transition: all 150ms ease-in;
-  cursor: pointer;
-}
-
-.title {
   font-weight: bolder;
 }
 

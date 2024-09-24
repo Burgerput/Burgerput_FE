@@ -3,10 +3,10 @@ import styles from "./AdminProfile.module.css";
 import { useForm } from "react-hook-form";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import Button from "../shared/ui/Button/ui/Button";
-import { useGoHome } from "../hooks/useNavigator";
 import { useSubmitActions, useSubmitStates } from "../store/uiState";
 import { useAdminProfile } from "../hooks/Admins";
 import { Banner } from "../shared/ui/Banner";
+import { useNavigateToMain } from "../shared/lib/hooks";
 
 export default function AdminProfile() {
   const [hide, setHide] = useState(true);
@@ -21,7 +21,7 @@ export default function AdminProfile() {
     submit,
   } = useAdminProfile();
 
-  const { handleClick } = useGoHome();
+  const { handleClick } = useNavigateToMain();
   const { success } = useSubmitStates();
   const { handleSuccess } = useSubmitActions();
 

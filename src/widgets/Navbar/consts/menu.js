@@ -15,9 +15,9 @@ const zenputMenuItems = [
 const cheatMenuItems = [
   { label: "hidden" },
   { label: "hidden" },
-  { label: "사용 방법", to: "/cheat/help" },
-  { label: "기기 범위 지정", to: "/cheat/machine" },
-  { label: "식품 범위 지정", to: "/cheat/food" },
+  { label: "사용 방법", to: "/zenput/random/guide" },
+  { label: "기기 범위 지정", to: "/zenput/random/machine" },
+  { label: "식품 범위 지정", to: "/zenput/random/food" },
 ];
 
 export const DROPDOWN_MENU = [adminMenuItems, zenputMenuItems, cheatMenuItems];

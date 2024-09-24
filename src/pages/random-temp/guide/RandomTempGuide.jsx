@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./CheatModeGuide.module.css";
+import styles from "../styles.module.css";
 
-export default function CheatModeGuide() {
+export default function RandomTempGuide() {
   return (
-    <section className={styles.help}>
-      <header className={styles.title}>Cheat Mode</header>
+    <section className={styles.section}>
+      <header className={styles.title}>Guide</header>
       <section className={styles.main}>
         <article className={styles.tab}>
           <h1>진입 방법</h1>
