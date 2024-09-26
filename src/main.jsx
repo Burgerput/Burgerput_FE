@@ -8,7 +8,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Main from "./pages/Main";
-import AdminProfile from "./pages/AdminProfile";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 import { SelectFoods, SelectMachines } from "./pages/select-products";
@@ -19,6 +18,7 @@ import {
   RandomTempGuide,
 } from "./pages/random-temp";
 import { EditManagers } from "./pages/edit-managers";
+import { EditAdminProfile } from "./pages/edit-admin-profile";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
     loader: checkAuth,
     children: [
       { index: true, path: "/", element: <Main />, loader: checkAuth },
-      { path: "address", element: <AdminProfile />, loader: checkAuth },
+      { path: "address", element: <EditAdminProfile />, loader: checkAuth },
       {
         path: "select/machines",
         element: <SelectMachines />,

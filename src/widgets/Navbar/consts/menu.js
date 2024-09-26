@@ -2,7 +2,7 @@ const adminMenuItems = [
   { label: "기기 선택", to: "select/machines" },
   { label: "식품 선택", to: "select/foods" },
   { label: "관리자 목록 수정", to: "select/managers" },
-  { label: "관리자 계정 추가", to: "address" },
+  { label: "관리자 계정 입력", to: "address" },
 ];
 
 const zenputMenuItems = [

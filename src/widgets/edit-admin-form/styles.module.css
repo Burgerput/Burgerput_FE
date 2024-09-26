@@ -1,42 +1,12 @@
 .section {
+  flex: 1;
   display: flex;
-  position: relative;
   flex-direction: column;
-  justify-content: center;
-  align-items: space-between;
-  height: 100%;
-  width: 100%;
-}
-
-.header {
-  display: flex;
-  justify-content: center;
-  position: sticky;
-  width: 100%;
-  top: 0;
-  text-align: center;
-  padding: 0.7rem 0;
-  font-size: xx-large;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background-color: var(--navbar-background-color);
-  color: var(--text-basic-color);
-}
-
-.header__button {
-  position: absolute;
-  right: 20px;
-  transition: all 150ms ease-in;
-  cursor: pointer;
-}
-
-.header__button:hover {
-  transform: scale(120%);
 }
 
 .form {
-  display: flex;
   flex: 1;
+  display: flex;
   flex-direction: column;
   padding: 2rem 3rem;
   color: var(--navbar-background-color);
@@ -59,15 +29,14 @@
 
 .toggleButton {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-60%);
+  bottom: 30%;
+  right: 60px;
   font-size: 1.5rem;
   transition: all 250ms ease;
 }
 
 .toggleButton:hover {
-  transform: translateY(-60%) scale(115%);
+  transform: scale(115%);
 }
 
 .input {

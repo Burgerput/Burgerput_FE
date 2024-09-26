@@ -2,7 +2,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   addManager,
   deleteManger,
+  getAccounts,
   getManagerList,
+  submitAccounts,
 } from "../../../api/Managers";
 import { QUERIES_TO_INVALIDATE } from "../consts/queriesToInvalidate";
 
@@ -34,4 +36,28 @@ export function useEditManagers() {
   );
 
   return { managersQuery, addMgr, delMgr };
+}
+
+export function useEditAdminProfile() {
+  const queryClient = useQueryClient();
+  const accountsQuery = useQuery(["accounts"], () => getAccounts(), {
+    staleTime: Infinity,
+    cacheTime: Infinity,
+  });
+
+  const submit = useMutation(
+    ({ data }) =>
+      submitAccounts({
+        zenputId: data.email,
+        rbiId: data.id,
+        rbiPw: data.password,
+      }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["accounts"]);
+      },
+    }
+  );
+
+  return { accountsQuery, submit };
 }
