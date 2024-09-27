@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signIn } from "../api/user";
+import { signIn } from "../../../api/user";
 import { useNavigate } from "react-router-dom";
-import styles from "./SignInForm.module.css";
+import styles from "../styles.module.css";
 
 export default function SignInForm() {
   const {

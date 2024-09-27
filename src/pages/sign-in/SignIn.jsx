@@ -1,6 +1,6 @@
 import React from "react";
-import SignInForm from "../components/SignInForm";
-import styles from "./SignIn.module.css";
+import styles from "./styles.module.css";
+import { SignInForm } from "../../widgets/sign-in-form";
 import { SiBurgerking } from "react-icons/si";
 
 export default function SignIn() {

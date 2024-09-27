@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
-import SignIn from "./pages/SignIn";
 import { SelectFoods, SelectMachines } from "./pages/select-products";
 import { InputFoodTemp, InputMachineTemp } from "./pages/input-temp";
 import {
@@ -19,6 +18,7 @@ import {
 } from "./pages/random-temp";
 import { EditManagers } from "./pages/edit-managers";
 import { EditAdminProfile } from "./pages/edit-admin-profile";
+import { SignIn } from "./pages/sign-in";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");
