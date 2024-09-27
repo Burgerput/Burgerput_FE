@@ -1,4 +1,4 @@
-import client from "../../../api";
+import { client } from "../../../shared/api";
 
 // 달라진 목록을 받아오는 api
 export async function getDiffValue() {

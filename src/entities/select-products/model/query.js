@@ -1,12 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCustomProducts } from "./store";
+import { useSubmitActions } from "../../ui-state";
 import {
   getAllFoods,
   getAllMachines,
   setCustomFoods,
   setCustomMachines,
-} from "../../../api/Products";
-import { useCustomProducts } from "./store";
-import { useSubmitActions } from "../../ui-state";
+} from "../api";
 
 function dataMutation(queryKey, getItemFunc, setItemFunc, invalidateKeys) {
   const queryClient = useQueryClient();

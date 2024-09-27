@@ -1,7 +1,6 @@
 import axios from "axios";
-import { ReissueToken } from "./user";
 
-const client = axios.create({
+export const client = axios.create({
   // 로컬 테스트시 주석
   baseURL: import.meta.env.VITE_SERVER_URL,
   timeout: 600 * 1000,
@@ -61,4 +60,21 @@ client.interceptors.response.use(
   }
 );
 
-export default client;
+async function ReissueToken() {
+  return await client
+    .post("/refresh-token") //
+    .then((res) => {
+      if (res.status === 200) {
+        const AccessToken = res.data.accessToken;
+
+        localStorage.setItem("AccessToken", AccessToken);
+
+        return res.status;
+      }
+    })
+    .catch(() => {
+      localStorage.removeItem("AccessToken");
+      window.location.href = "/signin";
+      return Promise.reject(error);
+    });
+}

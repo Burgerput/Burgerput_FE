@@ -5,7 +5,7 @@ import {
   getAccounts,
   getManagerList,
   submitAccounts,
-} from "../../../api/Managers";
+} from "../api";
 import { QUERIES_TO_INVALIDATE } from "../consts/queriesToInvalidate";
 
 export function useEditManagers() {

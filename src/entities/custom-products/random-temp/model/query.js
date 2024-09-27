@@ -6,7 +6,7 @@ import {
   setCustomTempMachine,
   submitFoods,
   submitMachines,
-} from "../../../../api/Products";
+} from "../api";
 import { useSubmitActions } from "../../../ui-state";
 
 function dataMutation(

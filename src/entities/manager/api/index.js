@@ -1,4 +1,4 @@
-import client from "./index";
+import { client } from "../../../shared/api";
 
 export async function getManagerList() {
   return await client
