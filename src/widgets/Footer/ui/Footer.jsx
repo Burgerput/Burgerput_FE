@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "../styles.module.css";
-import InputUserName from "../../../components/InputUserName";
-import ChatWindow from "../../../components/ChatWindow";
-import { socket } from "../../../utils/server";
+import { ChatWindow } from "../../chat-window";
+import { InputUserName } from "../../input-user-name";
 import { UpdatedValueChecker } from "../../../features/updated-value-check";
 import { DdayCounter } from "../../../features/dday-counter";
 import { HowToUse } from "../../../features/how-to-use";
 import { useUserName } from "../../../entities/user";
 import { Modal } from "../../../shared/ui/Modal";
 import { useModal } from "../../../shared/lib/hooks";
+import { socket } from "../../../entities/socket";
 
 export default function Footer() {
   const userName = useUserName();
@@ -31,7 +31,11 @@ export default function Footer() {
         </button>
         {openModal && (
           <Modal onClose={handleModalClose}>
-            {userName ? <ChatWindow /> : <InputUserName />}
+            {userName ? (
+              <ChatWindow />
+            ) : (
+              <InputUserName onClose={handleModalClose} />
+            )}
           </Modal>
         )}
       </article>

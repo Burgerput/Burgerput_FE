@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import InfoMessage from "./ui/InfoMessage";
-import ChatMessage from "./ui/ChatMessage";
-import styles from "./ChatLogs.module.css";
+import InfoMessage from "./InfoMessage";
+import ChatMessage from "./ChatMessage";
+import styles from "../styles.module.css";
 
 export default function ChatLogs({ logs }) {
   const scrollRef = useRef();

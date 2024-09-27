@@ -1,27 +1,10 @@
-import React, { useState } from "react";
-import styles from "./InputChatMessage.module.css";
-import { socket } from "../utils/server";
+import React from "react";
+import styles from "../styles.module.css";
 import { BsSendFill } from "react-icons/bs";
-import { useUserName } from "../entities/user";
+import { useChatInput } from "../../../entities/socket";
 
 export default function InputChatMessage({ disabled }) {
-  const [message, setMessage] = useState("");
-  const userName = useUserName();
-
-  const handleChange = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    socket.emit("chat", {
-      currentUserId: socket.id,
-      author: userName,
-      message,
-    });
-
-    setMessage("");
-  };
+  const { message, handleChange, handleSubmit } = useChatInput;
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

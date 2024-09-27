@@ -1,0 +1,85 @@
+.section {
+  width: 500px;
+  height: 700px;
+  z-index: 999;
+  background-color: var(--navbar-background-color);
+  color: var(--text-basic-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Pretendard";
+  padding-top: 12px;
+}
+
+.desc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+}
+
+.infoMessage {
+  text-align: center;
+  font-size: 14px;
+}
+
+.sendedBox {
+  display: flex;
+  justify-content: end;
+}
+
+.sendMessage {
+  background-color: var(--navbar-depth2-color);
+  padding: 6px 8px 6px 10px;
+  border-radius: 6px;
+  max-width: 300px;
+}
+
+.receivedBox {
+  background-color: var(--navbar-depth2-color);
+  width: fit-content;
+  padding: 6px 10px 6px 8px;
+  border-radius: 6px;
+  max-width: 300px;
+}
+
+.author {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  background-color: var(--navbar-depth2-color);
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  font-size: 14px;
+  padding: 14px 12px;
+  border: none;
+  outline: none;
+}
+
+.button {
+  font-size: 24px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  background-color: var(--screen-border-color);
+  color: var(--navbar-depth2-color);
+}

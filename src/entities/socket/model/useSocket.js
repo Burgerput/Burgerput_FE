@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import styles from "./ChatWindow.module.css";
-import { socket } from "../utils/server";
-import ChatLogs from "./ChatLogs";
-import InputChatMessage from "./InputChatMessage";
-import { useSetUserId, useSetUserName, useUserName } from "../entities/user";
+import { useEffect, useState } from "react";
+import { socket } from "../../socket";
+import { useSetUserId, useSetUserName, useUserName } from "../../user";
 
-export default function ChatWindow() {
+export function useSocket() {
   const userName = useUserName();
   const setUserName = useSetUserName();
   const setUserId = useSetUserId();
@@ -46,13 +43,5 @@ export default function ChatWindow() {
     };
   }, []);
 
-  return (
-    <section className={styles.section}>
-      {logs.length === 0 && (
-        <p className={styles.desc}>채팅에 참여했습니다! 잠시만 기다려주세요.</p>
-      )}
-      <ChatLogs logs={logs} />
-      <InputChatMessage disabled={logs.length === 0} />
-    </section>
-  );
+  return logs;
 }
