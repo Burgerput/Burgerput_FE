@@ -1,0 +1,15 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  padding: 0.7rem 0;
+  font-weight: 700;
+  font-size: xx-large;
+  margin-bottom: 1rem;
+  background-color: var(--navbar-background-color);
+  color: var(--text-basic-color);
+  text-align: center;
+}

@@ -1,0 +1,48 @@
+.section {
+  background-color: var(--navbar-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 50px;
+}
+
+.textBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.mapSign {
+  font-size: 16rem;
+}
+
+.button {
+  background-color: var(--screen-background-color);
+  color: var(--navbar-background-color);
+  border: 2px solid var(--navbar-background-color);
+  margin-top: 20px;
+  padding: 0.8rem 0;
+  width: 100%;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  transition: all 150ms ease-in;
+}
+
+.button:hover {
+  background-color: var(--navbar-background-color);
+  color: var(--screen-background-color);
+  border: 2px solid var(--screen-background-color);
+}
