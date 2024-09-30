@@ -4,7 +4,7 @@ import { BsSendFill } from "react-icons/bs";
 import { useChatInput } from "../../../entities/socket";
 
 export default function InputChatMessage({ disabled }) {
-  const { message, handleChange, handleSubmit } = useChatInput;
+  const { message, handleChange, handleSubmit } = useChatInput();
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
