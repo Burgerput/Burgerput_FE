@@ -1,24 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./app/App";
-import {
-  createBrowserRouter,
-  redirect,
-  RouterProvider,
-} from "react-router-dom";
-import Main from "./pages/Main";
-import NotFound from "./pages/NotFound";
-import { SelectFoods, SelectMachines } from "./pages/select-products";
-import { InputFoodTemp, InputMachineTemp } from "./pages/input-temp";
+import { createBrowserRouter, redirect } from "react-router-dom";
+import { NotFound } from "../../pages/not-found";
+import { EditAdminProfile } from "../../pages/edit-admin-profile";
+import { EditManagers } from "../../pages/edit-managers";
+import { InputFoodTemp, InputMachineTemp } from "../../pages/input-temp";
 import {
   RandomFoodTemp,
   RandomMachineTemp,
   RandomTempGuide,
-} from "./pages/random-temp";
-import { EditManagers } from "./pages/edit-managers";
-import { EditAdminProfile } from "./pages/edit-admin-profile";
-import { SignIn } from "./pages/sign-in";
+} from "../../pages/random-temp";
+import { SelectFoods, SelectMachines } from "../../pages/select-products";
+import { SignIn } from "../../pages/sign-in";
+import App from "../App";
 
 const checkAuth = () => {
   const token = localStorage.getItem("AccessToken");
@@ -30,14 +22,13 @@ const checkAuth = () => {
   return token;
 };
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <NotFound />,
     loader: checkAuth,
     children: [
-      { index: true, path: "/", element: <Main />, loader: checkAuth },
       { path: "address", element: <EditAdminProfile />, loader: checkAuth },
       {
         path: "select/machines",
@@ -74,6 +65,3 @@ const router = createBrowserRouter([
     element: <SignIn />,
   },
 ]);
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);

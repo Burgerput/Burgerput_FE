@@ -1,3 +1,5 @@
+import { client } from "../../../shared/api";
+
 export async function signIn(data) {
   return await client
     .post("/signin", data)

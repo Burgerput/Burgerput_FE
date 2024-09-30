@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useDisplay() {
+export function useOutletDisplay() {
   const [isOutletHidden, setIsOutletHidden] = useState(true);
   const [hiddenCount, setHiddenCount] = useState(0);
 
