@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import styles from "../styles.module.css";
 
 export default function InputTemp({ product, register, setValue, idx }) {
-  const [disabled, setDisabled] = useState(false);
   const { id, name, min, max } = product;
 
-  const handleDisabled = () => {
-    setDisabled((prev) => !prev);
+  const [disabled, setDisabled] = useState(false);
 
-    if (!disabled) {
-      setValue(`products[${idx}].temp`, 999);
-    } else {
-      setValue(`products[${idx}].temp`, "");
-    }
+  const handleDisabled = () => {
+    setDisabled((prev) => {
+      const newDisabledState = !prev;
+
+      if (newDisabledState) {
+        setValue(`products[${idx}].temp`, 999);
+      } else {
+        setValue(`products[${idx}].temp`, "");
+      }
+
+      return newDisabledState;
+    });
   };
 
   return (
@@ -39,14 +44,14 @@ export default function InputTemp({ product, register, setValue, idx }) {
           type="number"
           disabled={disabled}
           {...register(`products[${idx}].temp`, {
-            required: disabled ? undefined : "온도는 필수 입력 사항입니다.",
+            required: !disabled && "온도는 필수 입력 사항입니다.",
             valueAsNumber: true,
             min: {
-              value: disabled ? undefined : min,
+              value: !disabled ? null : min,
               message: `온도를 ${min} 이상으로 기입해주세요.`,
             },
             max: {
-              value: disabled ? undefined : max,
+              value: disabled ? null : max,
               message: `온도를 ${max} 이하로 기입해주세요.`,
             },
           })}

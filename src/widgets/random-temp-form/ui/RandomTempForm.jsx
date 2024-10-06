@@ -11,9 +11,11 @@ export default function RandomTempForm({
 }) {
   const { handleSubmit, control, setValue } = useForm({
     mode: "onSubmit",
-    values: {
+    defaultValues: {
       products: products.map((product) => ({
         ...product,
+        initMin: Number(product.initMin),
+        initMax: Number(product.initMax),
         min: Number(product.min),
         max: Number(product.max),
       })),
