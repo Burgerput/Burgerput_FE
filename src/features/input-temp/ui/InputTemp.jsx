@@ -47,7 +47,7 @@ export default function InputTemp({ product, register, setValue, idx }) {
             required: !disabled && "온도는 필수 입력 사항입니다.",
             valueAsNumber: true,
             min: {
-              value: !disabled ? null : min,
+              value: disabled ? null : min,
               message: `온도를 ${min} 이상으로 기입해주세요.`,
             },
             max: {
